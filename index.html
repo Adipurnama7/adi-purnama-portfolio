@@ -1,25 +1,239 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
-    <title>Porpolio</title>
+    <title>Adi Purnama — Portofolio</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css" />
     <link rel="stylesheet" href="css/animate.css" />
-
     <link rel="stylesheet" href="css/owl.carousel.min.css" />
     <link rel="stylesheet" href="css/owl.theme.default.min.css" />
     <link rel="stylesheet" href="css/magnific-popup.css" />
-
     <link rel="stylesheet" href="css/aos.css" />
-
     <link rel="stylesheet" href="css/ionicons.min.css" />
-
     <link rel="stylesheet" href="css/flaticon.css" />
     <link rel="stylesheet" href="css/icomoon.css" />
     <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      /* ================= DESIGN TOKENS ================= */
+      :root {
+        --bg: #0a0a0d;
+        --surface: #131318;
+        --surface-2: #1b1b22;
+        --border: rgba(255, 255, 255, 0.08);
+        --accent: #f2b544;
+        --accent-soft: rgba(242, 181, 68, 0.12);
+        --text: #f4f4f0;
+        --text-muted: #9a9aa0;
+        --radius: 10px;
+      }
+
+      body {
+        background: var(--bg);
+        font-family: "Inter", "Poppins", sans-serif;
+        color: var(--text-muted);
+      }
+
+      h1, h2, h3, h4, h5, h6, .navbar-brand {
+        font-family: "Poppins", sans-serif;
+        letter-spacing: -0.01em;
+      }
+
+      p { max-width: 68ch; }
+
+      /* ================= NAVBAR ================= */
+      #ftco-navbar {
+        backdrop-filter: blur(10px);
+        background: rgba(10, 10, 13, 0.7) !important;
+        border-bottom: 1px solid var(--border);
+      }
+      .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
+        font-weight: 500;
+        font-size: 14.5px;
+      }
+      .ftco-navbar-light .navbar-nav > .nav-item > .nav-link span:before {
+        background: var(--accent);
+      }
+
+      /* ================= HEADINGS ================= */
+      .heading-section h1.big { opacity: 0.06; }
+      .heading-section h2 { font-size: 2.4rem; font-weight: 600; }
+      .heading-section .subheading {
+        color: var(--accent) !important;
+        font-size: 12px;
+        letter-spacing: 2.5px;
+      }
+
+      /* ================= BUTTONS ================= */
+      .btn {
+        border-radius: 8px;
+        box-shadow: none;
+        letter-spacing: 1px;
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+      .btn.btn-primary {
+        background: var(--accent);
+        border-color: var(--accent) !important;
+        color: #14140f !important;
+        font-weight: 600;
+      }
+      .btn.btn-primary:hover { transform: translateY(-2px); background: #ffcb63 !important; }
+      .btn-outline-light { border-radius: 8px; border-color: rgba(255, 255, 255, 0.25) !important; }
+      .btn-outline-light:hover {
+        background: var(--accent) !important;
+        border-color: var(--accent) !important;
+        color: #14140f !important;
+        transform: translateY(-2px);
+      }
+
+      /* ================= HERO ================= */
+      .hero-pro { background: var(--bg); padding: 130px 0 60px; }
+      .hero-pro__eyebrow { color: var(--accent); letter-spacing: 3px; font-weight: 600; font-size: 14px; display: inline-block; }
+      .hero-pro__name {
+        font-size: clamp(40px, 7vw, 68px);
+        font-weight: 700;
+        color: var(--text);
+        margin-top: 16px;
+        line-height: 1.1;
+      }
+      .hero-pro__role { color: var(--text); font-weight: 400; font-size: clamp(20px, 4vw, 28px); margin-top: 10px; }
+      .hero-pro__focus { color: var(--accent); font-size: clamp(15px, 3vw, 18px); margin-top: 18px; }
+      .hero-pro__desc { color: var(--text-muted); font-size: 16.5px; margin-top: 24px; max-width: 540px; }
+      .hero-pro__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+      .hero-pro__img { width: 100%; max-width: 480px; border-radius: 16px; }
+
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(18px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .hero-pro__eyebrow, .hero-pro__name, .hero-pro__role,
+      .hero-pro__focus, .hero-pro__desc, .hero-pro__actions, .hero-pro__img {
+        animation: fadeUp .8s ease both;
+      }
+      .hero-pro__eyebrow { animation-delay: .05s; }
+      .hero-pro__name { animation-delay: .15s; }
+      .hero-pro__role { animation-delay: .25s; }
+      .hero-pro__focus { animation-delay: .35s; }
+      .hero-pro__desc { animation-delay: .45s; }
+      .hero-pro__actions { animation-delay: .55s; }
+      .hero-pro__img { animation-delay: .3s; }
+
+      /* ================= SCROLL REVEAL ================= */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity .6s ease, transform .6s ease;
+      }
+      .reveal.is-visible { opacity: 1; transform: translateY(0); }
+      .reveal-group > *:nth-child(1) { transition-delay: 0ms; }
+      .reveal-group > *:nth-child(2) { transition-delay: 80ms; }
+      .reveal-group > *:nth-child(3) { transition-delay: 160ms; }
+      .reveal-group > *:nth-child(4) { transition-delay: 240ms; }
+      .reveal-group > *:nth-child(5) { transition-delay: 320ms; }
+      .reveal-group > *:nth-child(6) { transition-delay: 400ms; }
+      .reveal-group > *:nth-child(n+7) { transition-delay: 460ms; }
+
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; transition: none !important; }
+        .reveal { opacity: 1 !important; transform: none !important; }
+      }
+
+      /* ================= CARDS: TRAINING / ORG ================= */
+      .resume-wrap, .services-1 {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: none;
+        transition: border-color 0.2s ease, transform 0.2s ease;
+      }
+      .resume-wrap:hover { border-color: var(--accent); transform: translateY(-4px); }
+      .services-1:hover { border-color: var(--accent); }
+      .services-1:hover .icon i,
+      .services-1:hover .desc h3,
+      .services-1:hover .desc h3 a { color: var(--accent) !important; }
+      .services-1:hover .desc h3:after { background: var(--accent) !important; }
+
+      /* ================= SKILL SECTION ================= */
+      .skill-group { margin-bottom: 50px; }
+      .skill-group:last-child { margin-bottom: 0; }
+      .skill-group__title {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        color: var(--accent);
+        margin-bottom: 24px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+      }
+      .progress { background: var(--surface-2); border-radius: 6px; height: 8px; }
+      .progress-bar {
+        background: var(--accent);
+        border-radius: 6px;
+        width: 0%;
+        transition: width 1.1s cubic-bezier(.16,1,.3,1);
+      }
+      .progress-bar span { color: var(--text); font-weight: 500; font-size: 14px; }
+      .progress-wrap h3 { font-size: 15px; font-weight: 500; color: var(--text-muted); }
+
+      /* ================= PROJECT CARDS ================= */
+      .project-card {
+        background: var(--surface) !important;
+        border: 1px solid var(--border) !important;
+        border-radius: 14px !important;
+        transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+      }
+      .project-card:hover {
+        border-color: var(--accent) !important;
+        box-shadow: 0 16px 34px rgba(0,0,0,.4) !important;
+        transform: translateY(-4px);
+      }
+      .project-tech span, .project-kpi span {
+        background: var(--accent-soft) !important;
+        color: var(--accent) !important;
+        font-weight: 600;
+      }
+      .category-label { color: var(--accent); opacity: 1; }
+
+      /* ================= CERTIFICATES ================= */
+      #sertifikat .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        transition: border-color .2s ease, transform .2s ease;
+      }
+      #sertifikat .card:hover { border-color: var(--accent); transform: translateY(-4px); }
+      #sertifikat .card-body {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+      #sertifikat .card-body h6 { color: var(--text); font-weight: 600; min-height: 44px; }
+      #sertifikat .card-body .btn-primary { margin-top: auto; }
+
+      /* ================= CONTACT ================= */
+      .contact-section .box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        transition: border-color 0.2s ease, transform .2s ease;
+      }
+      .contact-section .box:hover { border-color: var(--accent); transform: translateY(-4px); }
+
+      /* ================= FOOTER ================= */
+      .ftco-footer { border-top: 1px solid var(--border); }
+
+      /* ================= ACCESSIBILITY ================= */
+      a:focus-visible, button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+    </style>
   </head>
+
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
       <div class="container">
@@ -27,141 +241,53 @@
         <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="oi oi-menu"></span> Menu
         </button>
-
         <div class="collapse navbar-collapse" id="ftco-nav">
           <ul class="navbar-nav nav ml-auto">
-            <li class="nav-item">
-              <a href="#home-section" class="nav-link"><span>Home</span></a>
-            </li>
-			<li class="nav-item">
-				<a href="#about" class="nav-link"><span>Tentang Saya</span></a>
-			  </li>
-            <li class="nav-item">
-              <a href="#Education" class="nav-link"><span>Pendidikan</span></a>
-            </li>
-            <li class="nav-item">
-              <a href="#Layanan" class="nav-link"><span>Organisasi</span></a>
-            </li>
-            <li class="nav-item">
-              <a href="#skill" class="nav-link"><span>Skill</span></a>
-            </li>
-            <li class="nav-item">
-              <a href="#proyek" class="nav-link"><span>Proyek</span></a>
-            </li>
-		</li>
-		<li class="nav-item">
-		  <a href="#kontak" class="nav-link"><span>Kontak</span></a>
-		</li>
+            <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
+            <li class="nav-item"><a href="#about" class="nav-link"><span>Tentang Saya</span></a></li>
+            <li class="nav-item"><a href="#Education" class="nav-link"><span>Pendidikan</span></a></li>
+            <li class="nav-item"><a href="#Layanan" class="nav-link"><span>Organisasi</span></a></li>
+            <li class="nav-item"><a href="#skill" class="nav-link"><span>Skill</span></a></li>
+            <li class="nav-item"><a href="#proyek" class="nav-link"><span>Proyek</span></a></li>
+            <li class="nav-item"><a href="#kontak" class="nav-link"><span>Kontak</span></a></li>
           </ul>
         </div>
       </div>
     </nav>
-   <section id="home-section" class="hero" style="background:#000;padding:90px 0 40px;">
 
-  <div class="container">
-
-    <div class="row d-flex align-items-center justify-content-between">
-
-      <!-- Text -->
-      <div class="col-lg-6 col-md-6 text-center text-lg-left" style="margin-bottom:40px;">
-
-        <span style="color:#fcbf49;letter-spacing:3px;font-weight:600;font-size:18px;">
-          HELLO, I'M
-        </span>
-
-        <h1
-          style="
-          font-size:clamp(42px,8vw,72px);
-          font-weight:800;
-          line-height:1.1;
-          color:white;
-          margin-top:20px;">
-          Adi Purnama
-        </h1>
-
-        <h3
-          style="
-          color:white;
-          font-size:clamp(22px,5vw,34px);
-          margin-top:15px;">
-          Computer Science Graduate
-        </h3>
-
-        <h5
-        style="
-        color:#fcbf49;
-        font-size:clamp(18px,4vw,24px);
-        line-height:1.5;
-        margin-top:20px;">
-        Data Analyst • System Analyst • Business Intelligence • Machine Learning
-        </h5>
-
-       <p
-      style="
-      color:#d9d9d9;
-      font-size:18px;
-      line-height:1.8;
-      margin-top:30px;
-      max-width:550px;
-      margin-left:auto;
-      margin-right:auto;">
-
-      Fresh Graduate Teknik Informatika yang memiliki minat di bidang
-      Data Analytics, System Analysis, Business Intelligence,
-      dan Machine Learning. Terbiasa menggunakan Python, SQL,
-      Power BI, Microsoft Excel, serta perancangan sistem untuk
-      mengolah data dan menghasilkan solusi yang mendukung
-      pengambilan keputusan bisnis.
-    </p>
-
-        <div
-          style="
-          display:flex;
-          flex-wrap:wrap;
-          justify-content:center;
-          gap:15px;
-          margin-top:35px;">
-
-          <a href="#proyek"
-            class="btn btn-primary py-3 px-4">
-            Lihat Proyek
-          </a>
-
-          <a href="pdf/CV_Adi_Purnama.pdf"
-            target="_blank"
-            class="btn btn-outline-light py-3 px-4">
-            Download CV
-          </a>
-
+    <!-- ================= HERO ================= -->
+    <section id="home-section" class="hero-pro">
+      <div class="container">
+        <div class="row d-flex align-items-center justify-content-between">
+          <div class="col-lg-6 col-md-6 text-center text-lg-left">
+            <span class="hero-pro__eyebrow">HELLO, I'M</span>
+            <h1 class="hero-pro__name">Adi Purnama</h1>
+            <h3 class="hero-pro__role">Computer Science Graduate</h3>
+            <h5 class="hero-pro__focus">Data Analyst • System Analyst • Business Intelligence • Machine Learning</h5>
+            <p class="hero-pro__desc">
+              Fresh Graduate Teknik Informatika yang memiliki minat di bidang Data
+              Analytics, System Analysis, Business Intelligence, dan Machine
+              Learning. Terbiasa menggunakan Python, SQL, Power BI, Microsoft
+              Excel, serta perancangan sistem untuk mengolah data dan
+              menghasilkan solusi yang mendukung pengambilan keputusan bisnis.
+            </p>
+            <div class="hero-pro__actions">
+              <a href="#proyek" class="btn btn-primary py-3 px-4">Lihat Proyek</a>
+              <a href="pdf/CV_Adi_Purnama.pdf" target="_blank" class="btn btn-outline-light py-3 px-4">Download CV</a>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 text-center">
+            <img src="images/adi_formal.png" alt="Adi Purnama" class="hero-pro__img" />
+          </div>
         </div>
-
       </div>
+    </section>
 
-      <!-- Image -->
-      <div class="col-lg-6 col-md-6 text-center">
-
-        <img
-          src="images/adi_formal.png"
-          alt="Adi Purnama"
-
-          style="
-          width:100%;
-          max-width:520px;
-          height:auto;
-          display:block;
-          margin:auto;">
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
+    <!-- ================= TENTANG SAYA ================= -->
     <section class="ftco-about img ftco-section ftco-no-pb" id="about">
       <div class="container">
         <div class="row d-flex">
-          <div class="col-md-6 col-lg-5 d-flex">
+          <div class="col-md-6 col-lg-5 d-flex reveal">
             <div class="img-about img d-flex align-items-stretch">
               <div class="overlay"></div>
               <div class="img d-flex align-self-stretch align-items-center" style="background-image: url(images/pas_poto.jpeg)"></div>
@@ -169,36 +295,33 @@
           </div>
           <div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
             <div class="row justify-content-start pb-3">
-              <div class="col-md-13 heading-section ftco-animate">
+              <div class="col-12 heading-section reveal">
                 <h1 class="big">Tentang</h1>
                 <h2 class="mb-4">Tentang Saya</h2>
                 <p>
                   Saya adalah lulusan <strong>S1 Teknik Informatika</strong> dari
                   <strong>Universitas Islam Negeri Sunan Gunung Djati Bandung</strong>
-                  yang memiliki minat di bidang <strong>Data Analytics, System Analysis,
-Machine Learning, dan Business Intelligence</strong>. Saya terbiasa menggunakan
-                  <strong>Python, SQL, Power BI,</strong> dan <strong>Microsoft Excel</strong>
-                  untuk mengolah data, membangun dashboard, serta menghasilkan insight yang
-                  mendukung pengambilan keputusan.
-              </p>
-  <p style="margin-top:16px;">
-  Saya senang mempelajari teknologi baru,
-  bekerja secara kolaboratif,
-  serta menganalisis kebutuhan bisnis untuk menghasilkan
-  solusi yang efektif. Saat ini saya terbuka untuk peluang
-  sebagai
-  <strong>Data Analyst</strong>,
-  <strong>System Analyst</strong>,
-  <strong>Business Intelligence</strong>,
-  <strong>Machine Learning Engineer</strong>,
-  maupun
-  <strong>AI Engineer</strong>.
-  </p>
- </div>
+                  yang memiliki minat di bidang <strong>Data Analytics, System
+                  Analysis, Machine Learning, dan Business Intelligence</strong>.
+                  Saya terbiasa menggunakan <strong>Python, SQL, Power BI,</strong>
+                  dan <strong>Microsoft Excel</strong> untuk mengolah data,
+                  membangun dashboard, serta menghasilkan insight yang mendukung
+                  pengambilan keputusan.
+                </p>
+                <p style="margin-top:16px;">
+                  Saya senang mempelajari teknologi baru, bekerja secara
+                  kolaboratif, serta menganalisis kebutuhan bisnis untuk
+                  menghasilkan solusi yang efektif. Saat ini saya terbuka untuk
+                  peluang sebagai <strong>Data Analyst</strong>,
+                  <strong>System Analyst</strong>, <strong>Business
+                  Intelligence</strong>, <strong>Machine Learning Engineer</strong>,
+                  maupun <strong>AI Engineer</strong>.
+                </p>
+              </div>
             </div>
-            <div class="counter-wrap ftco-animate d-flex mt-md-3">
+            <div class="counter-wrap reveal d-flex mt-md-3">
               <div class="text">
-                <p><a href="#kontak" class="btn btn-primary py-3 px-3">Kontak </a></p>
+                <p><a href="#kontak" class="btn btn-primary py-3 px-3">Kontak</a></p>
               </div>
             </div>
           </div>
@@ -206,1408 +329,731 @@ Machine Learning, dan Business Intelligence</strong>. Saya terbiasa menggunakan
       </div>
     </section>
 
-  <section class="ftco-section ftco-no-pb" id="Education">
-  <div class="container">
-
-    <!-- Judul -->
-    <div class="row justify-content-center pb-5">
-      <div class="col-md-10 heading-section text-center ftco-animate">
-        <h1 class="big big-2">Pendidikan</h1>
-        <h2 class="mb-4">Pendidikan</h2>
-        <p>
-          Riwayat pendidikan yang menjadi dasar dalam mengembangkan
-          kemampuan di bidang Informatika, Data Analytics,
-          System Analysis, dan Machine Learning.
-        </p>
-      </div>
-    </div>
-
-    <!-- Card Pendidikan -->
-    <div class="row justify-content-center">
-
-      <div class="col-lg-8 col-md-10">
-
-        <div class="resume-wrap ftco-animate text-center">
-
-          <span class="date">
-            2022 – 2026
-          </span>
-
-          <h2 class="mt-3">
-            Universitas Islam Negeri Sunan Gunung Djati Bandung
-          </h2>
-
-          <span class="position">
-            S1 Teknik Informatika
-          </span>
-
-          <p class="mt-4">
-            <strong>IPK 3,88 / 4,00</strong><br>
-
-            Berfokus pada Data Analytics,
-            System Analysis,
-            Machine Learning,
-            dan Business Intelligence.
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- Button -->
-    <div class="row justify-content-center mt-5">
-
-      <div class="col-auto">
-
-        <a href="#kontak"
-          class="btn btn-primary py-3 px-5">
-
-          Hubungi Saya
-
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-    <section class="ftco-section" id="pelatihan">
-    <div class="container">
-
-        <div class="row justify-content-center pb-5">
-            <div class="col-md-10 heading-section text-center ftco-animate">
-                <h1 class="big big-2">Pelatihan</h1>
-                <h2 class="mb-4">Pelatihan & Bootcamp</h2>
-                <p>
-                    Berbagai pelatihan dan bootcamp yang telah saya ikuti
-                    untuk meningkatkan kompetensi di bidang Data Analytics,
-                    Machine Learning, Artificial Intelligence,
-                    dan Software Development.
-                </p>
-            </div>
-        </div>
-
-        <div class="row">
-
-            <div class="col-md-6">
-                <div class="resume-wrap ftco-animate">
-                    <span class="date">Jun 2025</span>
-                    <h2>Machine Learning Terapan</h2>
-                    <span class="position">Dicoding</span>
-                    <p>
-                        Mempelajari pengembangan model machine learning,
-                        predictive analytics, computer vision,
-                        sistem rekomendasi, NLP, dan deep learning.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="resume-wrap ftco-animate">
-                    <span class="date">Feb – Jul 2025</span>
-                    <h2>Machine Learning Engineer</h2>
-                    <span class="position">
-                        DBS Foundation Coding Camp
-                    </span>
-                    <p>
-                        Bootcamp intensif Machine Learning meliputi Python,
-                        SQL, Machine Learning, Deep Learning,
-                        Git, GitHub, dan AI Capstone Project.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="resume-wrap ftco-animate">
-                    <span class="date">Mei 2025</span>
-                    <h2>Belajar Fundamental Pemrosesan Data</h2>
-                    <span class="position">Dicoding</span>
-                    <p>
-                        Mempelajari Data Engineering,
-                        Data Repository,
-                        ETL Pipeline,
-                        serta otomasi proses data.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="resume-wrap ftco-animate">
-                    <span class="date">Mar 2025</span>
-                    <h2>Fundamental Analisis Data</h2>
-                    <span class="position">Dicoding</span>
-                    <p>
-                        Exploratory Data Analysis,
-                        statistik deskriptif,
-                        data wrangling,
-                        dashboard interaktif,
-                        dan visualisasi data.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="resume-wrap ftco-animate">
-                    <span class="date">Feb 2025</span>
-                    <h2>Belajar Analisis Data dengan Python</h2>
-                    <span class="position">Dicoding</span>
-                    <p>
-                        Analisis data end-to-end menggunakan Python,
-                        Pandas,
-                        NumPy,
-                        EDA,
-                        serta visualisasi data.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="resume-wrap ftco-animate">
-                    <span class="date">Feb 2025</span>
-                    <h2>Belajar Dasar Visualisasi Data</h2>
-                    <span class="position">Dicoding</span>
-                    <p>
-                        Google Sheets,
-                        data storytelling,
-                        dashboard,
-                        prinsip visualisasi data,
-                        dan penyajian insight.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="resume-wrap ftco-animate">
-                    <span class="date">Jan 2025</span>
-                    <h2>Belajar Dasar SQL</h2>
-                    <span class="position">Dicoding</span>
-                    <p>
-                        Database Relasional,
-                        ERD,
-                        SQL DDL,
-                        DML,
-                        Query,
-                        Join,
-                        dan Normalisasi Database.
-                    </p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-   <section class="ftco-section" id="skill">
-  <div class="container">
-    <div class="row justify-content-center pb-5">
-      <div class="col-md-12 heading-section text-center ftco-animate">
-        <h1 class="big big-2">Keahlian</h1>
-        <h2 class="mb-4">Skill</h2>
-        <p>
-          Memiliki kemampuan dalam analisis sistem, analisis data, pengelolaan
-          basis data, visualisasi data, serta pengembangan aplikasi berbasis web.
-          Berpengalaman dalam requirement gathering, business process analysis,
-          perancangan database, dan membangun solusi berbasis data menggunakan
-          berbagai tools dan teknologi.
-        </p>
-      </div>
-    </div>
-
-    <div class="row">
-
-      <!-- System Analysis -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>System Analysis</h3>
-          <div class="progress">
-            <div class="progress-bar color-1"
-              role="progressbar"
-              aria-valuenow="90"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:90%">
-              <span>90%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SQL -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>SQL</h3>
-          <div class="progress">
-            <div class="progress-bar color-2"
-              role="progressbar"
-              aria-valuenow="90"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:90%">
-              <span>90%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Python -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>Python</h3>
-          <div class="progress">
-            <div class="progress-bar color-3"
-              role="progressbar"
-              aria-valuenow="90"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:90%">
-              <span>90%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Database Design -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>Database Design</h3>
-          <div class="progress">
-            <div class="progress-bar color-4"
-              role="progressbar"
-              aria-valuenow="90"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:90%">
-              <span>90%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Requirement Gathering -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>Requirement Gathering</h3>
-          <div class="progress">
-            <div class="progress-bar color-5"
-              role="progressbar"
-              aria-valuenow="85"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:85%">
-              <span>85%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Business Process Analysis -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>Business Process Analysis</h3>
-          <div class="progress">
-            <div class="progress-bar color-6"
-              role="progressbar"
-              aria-valuenow="85"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:85%">
-              <span>85%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Power BI -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>Power BI</h3>
-          <div class="progress">
-            <div class="progress-bar color-1"
-              role="progressbar"
-              aria-valuenow="85"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:85%">
-              <span>85%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Microsoft Excel -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>Microsoft Excel</h3>
-          <div class="progress">
-            <div class="progress-bar color-2"
-              role="progressbar"
-              aria-valuenow="85"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:85%">
-              <span>85%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MySQL -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>MySQL</h3>
-          <div class="progress">
-            <div class="progress-bar color-3"
-              role="progressbar"
-              aria-valuenow="85"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:85%">
-              <span>85%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PostgreSQL -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>PostgreSQL</h3>
-          <div class="progress">
-            <div class="progress-bar color-4"
-              role="progressbar"
-              aria-valuenow="80"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:80%">
-              <span>80%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Oracle Database -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>Oracle Database</h3>
-          <div class="progress">
-            <div class="progress-bar color-5"
-              role="progressbar"
-              aria-valuenow="80"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:80%">
-              <span>80%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PHP Laravel -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>PHP Laravel</h3>
-          <div class="progress">
-            <div class="progress-bar color-6"
-              role="progressbar"
-              aria-valuenow="80"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:80%">
-              <span>80%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Java -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>Java</h3>
-          <div class="progress">
-            <div class="progress-bar color-1"
-              role="progressbar"
-              aria-valuenow="75"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:75%">
-              <span>75%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Git & GitHub -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>Git & GitHub</h3>
-          <div class="progress">
-            <div class="progress-bar color-2"
-              role="progressbar"
-              aria-valuenow="80"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:80%">
-              <span>80%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Figma -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>Figma</h3>
-          <div class="progress">
-            <div class="progress-bar color-3"
-              role="progressbar"
-              aria-valuenow="75"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:75%">
-              <span>75%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- UML & Flowchart -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>UML & Flowchart</h3>
-          <div class="progress">
-            <div class="progress-bar color-4"
-              role="progressbar"
-              aria-valuenow="80"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:80%">
-              <span>80%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pandas -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>Pandas</h3>
-          <div class="progress">
-            <div class="progress-bar color-5"
-              role="progressbar"
-              aria-valuenow="85"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:85%">
-              <span>85%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- NumPy -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>NumPy</h3>
-          <div class="progress">
-            <div class="progress-bar color-6"
-              role="progressbar"
-              aria-valuenow="80"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:80%">
-              <span>80%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Machine Learning -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>Machine Learning</h3>
-          <div class="progress">
-            <div class="progress-bar color-1"
-              role="progressbar"
-              aria-valuenow="80"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:80%">
-              <span>80%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TensorFlow -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>TensorFlow</h3>
-          <div class="progress">
-            <div class="progress-bar color-2"
-              role="progressbar"
-              aria-valuenow="80"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:80%">
-              <span>80%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- YOLO -->
-      <div class="col-md-6 animate-box">
-        <div class="progress-wrap ftco-animate">
-          <h3>YOLO</h3>
-          <div class="progress">
-            <div class="progress-bar color-3"
-              role="progressbar"
-              aria-valuenow="85"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="width:85%">
-              <span>85%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-   <section class="ftco-section" id="Layanan">
-  <div class="container">
-
-    <div class="row justify-content-center py-5 mt-5">
-      <div class="col-md-12 heading-section text-center ftco-animate">
-        <h1 class="big big-2">Organisasi</h1>
-        <h2 class="mb-4">Pengalaman Organisasi</h2>
-        <p>
-          Pengalaman organisasi yang membantu saya mengembangkan kemampuan
-          kepemimpinan, komunikasi, kolaborasi tim, serta pemecahan masalah
-          dalam lingkungan akademik maupun non-akademik.
-        </p>
-      </div>
-    </div>
-
-    <div class="row justify-content-center">
-
-      <!-- GDSC -->
-      <div class="col-md-5 text-center d-flex ftco-animate">
-        <div class="services-1 p-4">
-
-          <span class="icon">
-            <i class="flaticon-analysis"></i>
-          </span>
-
-          <div class="desc">
-
-            <h3 class="mb-3">
-              Google Developer Student Clubs (GDSC)
-            </h3>
-
-            <p>
-              Berpartisipasi dalam berbagai kegiatan dan workshop
-              mengenai pengembangan perangkat lunak, Data Analytics,
-              Artificial Intelligence, serta Machine Learning.
-              Melalui komunitas ini saya meningkatkan kemampuan teknis,
-              memperluas wawasan teknologi, dan berkolaborasi dengan
-              mahasiswa dari berbagai bidang.
-            </p>
-
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Ruang Grafis -->
-      <div class="col-md-5 text-center d-flex ftco-animate">
-        <div class="services-1 p-4">
-
-          <span class="icon">
-            <i class="flaticon-ideas"></i>
-          </span>
-
-          <div class="desc">
-
-            <h3 class="mb-3">
-              BSO Ruang Grafis
-            </h3>
-
-            <p>
-              Aktif dalam organisasi yang berfokus pada desain grafis dan
-              media kreatif. Berkontribusi dalam pembuatan konten visual,
-              publikasi kegiatan, serta bekerja sama dalam tim untuk
-              menghasilkan media informasi yang menarik dan komunikatif.
-            </p>
-
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-
-<section class="ftco-section ftco-project" id="proyek">
-  <div class="container">
-
-    <!-- Judul -->
-    <div class="row justify-content-center pb-5">
-      <div class="col-md-10 heading-section text-center ftco-animate">
-        <h1 class="big big-2">Proyek</h1>
-        <h2 class="mb-4">Portofolio Proyek</h2>
-        <p>
-          Kumpulan proyek yang saya kerjakan sebagai implementasi kemampuan di
-          bidang Data Analytics, Machine Learning, System Analysis, serta Web Development.
-        </p>
-      </div>
-    </div>
-
-    <!-- ================= DATA ANALYTICS ================= -->
-
-    <div class="row justify-content-center mb-5">
-      <div class="col-md-12 text-center">
-        <h2>Data Analytics & Machine Learning</h2>
-        <p>
-          Proyek yang berfokus pada analisis data, visualisasi data,
-          machine learning, business intelligence, dan system analysis.
-        </p>
-      </div>
-    </div>
-
-    <!-- Project 1 -->
-    <div class="col-md-12 mb-5 text-center">
-
-      <img
-        src="images/retail_cus.png"
-        class="img-fluid rounded shadow"
-        style="
-        max-width:100%;
-        max-height:500px;
-        object-fit:contain;">
-
-      <div class="mt-4">
-
-        <h3>Retail Sales Analytics Dashboard</h3>
-
-        <span class="text-primary">
-          Power BI • Python • SQL
-        </span>
-
-        <p class="mt-3 px-md-5 px-3">
-          Dashboard interaktif untuk menganalisis lebih dari
-          20.000 transaksi penjualan retail.
-          Proyek ini mencakup proses ekstraksi data menggunakan SQL,
-          analisis menggunakan Python,
-          serta visualisasi menggunakan Power BI
-          untuk menghasilkan insight bisnis.
-        </p>
-
-      </div>
-
-    </div>
-
-    <!-- Project 2 -->
-
-    <div class="col-md-12 mb-5 text-center">
-
-      <img
-        src="images/cus_segmentasion.png"
-        class="img-fluid rounded shadow"
-        style="
-        max-width:100%;
-        max-height:500px;
-        object-fit:contain;">
-
-      <div class="mt-4">
-
-        <h3>Retail Customer Analytics & Segmentation</h3>
-
-        <span class="text-primary">
-          Python • Power BI • RFM Analysis
-        </span>
-
-        <p class="mt-3 px-md-5 px-3">
-          Melakukan segmentasi pelanggan menggunakan metode
-          RFM dan Pareto Analysis
-          untuk mengidentifikasi pelanggan bernilai tinggi
-          serta menghasilkan rekomendasi strategi pemasaran
-          berbasis data.
-        </p>
-
-      </div>
-
-    </div>
-
-    <!-- ================= WEB DEVELOPMENT ================= -->
-
-    <div class="row justify-content-center mt-5 mb-5">
-      <div class="col-md-12 text-center">
-
-        <h2>Web Development</h2>
-
-        <p>
-          Beberapa proyek website yang saya kembangkan menggunakan
-          HTML, CSS, JavaScript, PHP, Java, dan MySQL.
-        </p>
-
-      </div>
-    </div>
-
-    <div class="col-md-12 mb-5 text-center">
-
-      <img
-        src="images/jejak_prestasi.jpeg"
-        class="img-fluid rounded shadow"
-        style="
-        max-width:100%;
-        max-height:500px;
-        object-fit:contain;">
-
-      <div class="mt-4">
-
-        <h3>Jejak Prestasi </h3>
-
-        <span class="text-primary">
-          PHP • PostgreSQL • Bootstrap
-        </span>
-
-        <p class="mt-3 px-md-5 px-3">
-        Jejak Prestasi merupakan sistem informasi berbasis web yang dirancang
-    untuk mendokumentasikan dan mengelola data prestasi mahasiswa dan dosen secara
-    terpusat. Sistem ini menyediakan fitur pengelolaan data, unggah bukti
-    prestasi, validasi oleh administrator, serta pelaporan sehingga proses
-    pencatatan prestasi menjadi lebih efektif dan terorganisir.
-        </p>
-
-      </div>
-
-    </div>
-
-    <!-- Website 1 -->
-
-    <div class="col-md-12 mb-5">
-
-    <div class="text-center">
-        <h3>E-Zakat Management System</h3>
-
-        <span class="text-primary">
-            PHP Laravel • MySQL • Bootstrap
-        </span>
-
-        <p class="mt-3 px-md-5 px-3">
-            Sistem informasi pengelolaan zakat berbasis web yang dikembangkan
-            menggunakan Laravel. Sistem menyediakan fitur pengelolaan muzaki,
-            mustahik, jenis zakat, transaksi pembayaran, distribusi dana zakat,
-            manajemen masjid mitra, dashboard, serta pelaporan yang
-            terintegrasi untuk meningkatkan transparansi pengelolaan zakat.
-        </p>
-    </div>
-
-    <div class="row mt-4">
-
-        <!-- Screenshot Dashboard -->
-        <div class="col-md-6 text-center mb-4">
-            <img
-                src="images/zakat.png"
-                class="img-fluid rounded shadow"
-                style="max-height:350px; object-fit:contain;">
-
-            <h5 class="mt-3">Transaksi Zakat </h5>
-        </div>
-
-        <!-- Screenshot Distribusi -->
-        <div class="col-md-6 text-center mb-4">
-            <img
-                src="images/add_distribution.png"
-                class="img-fluid rounded shadow"
-                style="max-height:350px; object-fit:contain;">
-
-            <h5 class="mt-3">Dashboard</h5>
-        </div>
-
-    </div>
-
-</div>
-
-    <!-- Website 3 -->
-
-    <div class="col-md-12 mb-5 text-center">
-
-      <img
-        src="images/caffe.png"
-        class="img-fluid rounded shadow"
-        style="
-        max-width:100%;
-        max-height:500px;
-        object-fit:contain;">
-
-      <div class="mt-4">
-
-        <h3>Coffee Shop Website</h3>
-
-        <span class="text-primary">
-          HTML • CSS • JavaScript • PHP
-        </span>
-
-        <p class="mt-3 px-md-5 px-3">
-          Website profil coffee shop dengan tampilan responsif,
-          informasi produk, menu,
-          galeri, dan kontak pelanggan.
-        </p>
-
-      </div>
-
-    </div>
-
-    <!-- Website 4 -->
-
-    <div class="col-md-12 mb-5 text-center">
-
-      <img
-        src="images/undangan.png"
-        class="img-fluid rounded shadow"
-        style="
-        max-width:100%;
-        max-height:500px;
-        object-fit:contain;">
-
-      <div class="mt-4">
-
-        <h3>Digital Invitation Website</h3>
-
-        <span class="text-primary">
-          HTML • CSS • JavaScript
-        </span>
-
-        <p class="mt-3 px-md-5 px-3">
-          Website undangan digital yang dilengkapi
-          countdown, galeri foto,
-          lokasi acara, buku tamu,
-          dan desain responsif.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-</section>
-    
-    
-   <section class="ftco-section ftco-project" id="sertifikat">
-  <div class="container">
-
-    <div class="row justify-content-center pb-5">
-      <div class="col-md-10 heading-section text-center ftco-animate">
-        <h1 class="big big-2">Sertifikat</h1>
-        <h2 class="mb-4">Sertifikat</h2>
-        <p>
-          Beberapa sertifikasi yang saya peroleh melalui pelatihan,
-          bootcamp, dan program sertifikasi profesional.
-        </p>
-      </div>
-    </div>
-
-    <div class="row">
-   <!-- DBS -->
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <img src="images/ml_engginer.png" class="card-img-top" alt="Machine Learning Engineer">
-          <div class="card-body text-center">
-            <h6>Machine Learning Engineer</h6>
-            <small class="text-muted d-block mb-2">DBS Foundation Coding Camp</small>
-            <a href="pdf/[Coding Camp 2025] Certificate - MC222D5Y1279.pdf" target="_blank" class="btn btn-primary">
-              Lihat Sertifikat
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Excel -->
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <img src="images/excel.png" class="card-img-top" alt="Microsoft Excel">
-          <div class="card-body text-center">
-            <h6>Microsoft Office Specialist - Excel</h6>
-            <small class="text-muted d-block mb-2">
-              PTIPD UIN Sunan Gunung Djati Bandung × Lumina Eka Optima
-            </small>
-            <a href="pdf/Sertifikat ICT.pdf" target="_blank" class="btn btn-primary">
-              Lihat Sertifikat
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- Oracle Database Design -->
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <img src="images/sertif database design.png" class="card-img-top" alt="Database Design">
-          <div class="card-body text-center">
-            <h6>Database Design</h6>
-            <small class="text-muted d-block mb-2">Oracle Academy</small>
-            <a href="pdf/clmsCertificate (2).pdf" target="_blank" class="btn btn-primary">
-              Lihat Sertifikat
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Oracle SQL -->
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <img src="images/setif sql.png" class="card-img-top" alt="Database Programming with SQL">
-          <div class="card-body text-center">
-            <h6>Database Programming with SQL</h6>
-            <small class="text-muted d-block mb-2">Oracle Academy</small>
-            <a href="pdf/clmsCertificate (1) (1).pdf" target="_blank" class="btn btn-primary">
-              Lihat Sertifikat
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Cisco Linux -->
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <img src="images/linuk.png" class="card-img-top" alt="NDG Linux Essentials">
-          <div class="card-body text-center">
-            <h6>NDG Linux Essentials</h6>
-            <small class="text-muted d-block mb-2">Cisco Networking Academy</small>
-            <a href="pdf/sertifikat cisco LINUX.pdf" target="_blank" class="btn btn-primary">
-              Lihat Sertifikat
-            </a>
-          </div>
-        </div>
-      </div>
-
-       <div class="col-md-4">
-        <div class="card mb-4">
-          <img src="images/network.png" class="card-img-top" alt="CCNA: Introduction to Networks">
-          <div class="card-body text-center">
-            <h6>CCNA: Introduction to Networks</h6>
-            <small class="text-muted d-block mb-2">Cisco Networking Academy</small>
-            <a href="pdf/_certificate_adipurnamaa8-gmail-com_d589d14f-181f-4464-8e8e-8c791cda6e00.pdf" target="_blank" class="btn btn-primary">
-              Lihat Sertifikat
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Java -->
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <img src="images/java.png" class="card-img-top" alt="Java">
-          <div class="card-body text-center">
-            <h6>Memulai Pemrograman dengan Java</h6>
-            <small class="text-muted d-block mb-2">Dicoding Indonesia</small>
-            <a href="pdf/sertifikat_course_AdiPurnama_1227050004.pdf" target="_blank" class="btn btn-primary">
-              Lihat Sertifikat
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- SQL Dicoding -->
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <img src="images/sql.png" class="card-img-top" alt="SQL">
-          <div class="card-body text-center">
-            <h6>Belajar Dasar Structured Query Language (SQL)</h6>
-            <small class="text-muted d-block mb-2">Dicoding Indonesia</small>
-            <a href="pdf/sertif sql.pdf" target="_blank" class="btn btn-primary">
-              Lihat Sertifikat
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Python -->
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <img src="images/analis_py.png" class="card-img-top" alt="Python">
-          <div class="card-body text-center">
-            <h6>Belajar Analisis Data dengan Python</h6>
-            <small class="text-muted d-block mb-2">Dicoding Indonesia</small>
-            <a href="pdf/analis py.pdf" target="_blank" class="btn btn-primary">
-              Lihat Sertifikat
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Visualisasi -->
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <img src="images/visualisasi_data.png" class="card-img-top" alt="Visualisasi Data">
-          <div class="card-body text-center">
-            <h6>Belajar Dasar Visualisasi Data</h6>
-            <small class="text-muted d-block mb-2">Dicoding Indonesia</small>
-            <a href="pdf/visualisasi data.pdf" target="_blank" class="btn btn-primary">
-              Lihat Sertifikat
-            </a>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- Pemrosesan Data -->
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <img src="images/fundamental_pemrosesan_data.png" class="card-img-top" alt="Pemrosesan Data">
-          <div class="card-body text-center">
-            <h6>Belajar Fundamental Pemrosesan Data</h6>
-            <small class="text-muted d-block mb-2">Dicoding Indonesia</small>
-            <a href="pdf/pemrosesan data.pdf" target="_blank" class="btn btn-primary">
-              Lihat Sertifikat
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- ML Terapan -->
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <img src="images/ml_terapan.png" class="card-img-top" alt="Machine Learning Terapan">
-          <div class="card-body text-center">
-            <h6>Machine Learning Terapan</h6>
-            <small class="text-muted d-block mb-2">Dicoding Indonesia</small>
-            <a href="pdf/ml_terapan.pdf" target="_blank" class="btn btn-primary">
-              Lihat Sertifikat
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-    
-<!-- 
-    <section class="ftco-section ftco-project" id="galeri">
+    <!-- ================= PENDIDIKAN ================= -->
+    <section class="ftco-section ftco-no-pb" id="Education">
       <div class="container">
         <div class="row justify-content-center pb-5">
-          <div class="col-md-12 heading-section text-center ftco-animate">
-            <h1 class="big big-2">gallery</h1>
-            <h2 class="mb-4">My Gallery</h2>
+          <div class="col-md-10 heading-section text-center reveal">
+            <h1 class="big big-2">Pendidikan</h1>
+            <h2 class="mb-4">Pendidikan</h2>
             <p>
-				Abadikan momen indah dalam gambar, biarkan kenangan hidup dalam setiap klik. Foto tak hanya mengambil gambar, tapi juga emosi dan makna yang tak terlupakan. Sehingga, setiap detik berarti, mengingatkan kita pada kehidupan yang penuh cerita</p>
+              Riwayat pendidikan yang menjadi dasar dalam mengembangkan
+              kemampuan di bidang Informatika, Data Analytics, System
+              Analysis, dan Machine Learning.
+            </p>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-md-10">
+            <div class="resume-wrap reveal text-center">
+              <span class="date">2022 – 2026</span>
+              <h2 class="mt-3">Universitas Islam Negeri Sunan Gunung Djati Bandung</h2>
+              <span class="position">S1 Teknik Informatika</span>
+              <p class="mt-4">
+                <strong>IPK 3,88 / 4,00</strong><br />
+                Berfokus pada Data Analytics, System Analysis, Machine
+                Learning, dan Business Intelligence.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mt-5">
+          <div class="col-auto">
+            <a href="#kontak" class="btn btn-primary py-3 px-5">Hubungi Saya</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PELATIHAN ================= -->
+    <section class="ftco-section" id="pelatihan">
+      <div class="container">
+        <div class="row justify-content-center pb-5">
+          <div class="col-md-10 heading-section text-center reveal">
+            <h1 class="big big-2">Pelatihan</h1>
+            <h2 class="mb-4">Pelatihan &amp; Bootcamp</h2>
+            <p>
+              Berbagai pelatihan dan bootcamp yang telah saya ikuti untuk
+              meningkatkan kompetensi di bidang Data Analytics, Machine
+              Learning, Artificial Intelligence, dan Software Development.
+            </p>
+          </div>
+        </div>
+
+        <div class="row reveal-group">
+          <div class="col-md-6">
+            <div class="resume-wrap reveal">
+              <span class="date">Jun 2025</span>
+              <h2>Machine Learning Terapan</h2>
+              <span class="position">Dicoding</span>
+              <p>Mempelajari pengembangan model machine learning, predictive analytics, computer vision, sistem rekomendasi, NLP, dan deep learning.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="resume-wrap reveal">
+              <span class="date">Feb – Jul 2025</span>
+              <h2>Machine Learning Engineer</h2>
+              <span class="position">DBS Foundation Coding Camp</span>
+              <p>Bootcamp intensif Machine Learning meliputi Python, SQL, Machine Learning, Deep Learning, Git, GitHub, dan AI Capstone Project.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="resume-wrap reveal">
+              <span class="date">Mei 2025</span>
+              <h2>Belajar Fundamental Pemrosesan Data</h2>
+              <span class="position">Dicoding</span>
+              <p>Mempelajari Data Engineering, Data Repository, ETL Pipeline, serta otomasi proses data.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="resume-wrap reveal">
+              <span class="date">Mar 2025</span>
+              <h2>Fundamental Analisis Data</h2>
+              <span class="position">Dicoding</span>
+              <p>Exploratory Data Analysis, statistik deskriptif, data wrangling, dashboard interaktif, dan visualisasi data.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="resume-wrap reveal">
+              <span class="date">Feb 2025</span>
+              <h2>Belajar Analisis Data dengan Python</h2>
+              <span class="position">Dicoding</span>
+              <p>Analisis data end-to-end menggunakan Python, Pandas, NumPy, EDA, serta visualisasi data.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="resume-wrap reveal">
+              <span class="date">Feb 2025</span>
+              <h2>Belajar Dasar Visualisasi Data</h2>
+              <span class="position">Dicoding</span>
+              <p>Google Sheets, data storytelling, dashboard, prinsip visualisasi data, dan penyajian insight.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="resume-wrap reveal">
+              <span class="date">Jan 2025</span>
+              <h2>Belajar Dasar SQL</h2>
+              <span class="position">Dicoding</span>
+              <p>Database Relasional, ERD, SQL DDL, DML, Query, Join, dan Normalisasi Database.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SKILL (digabung, dikelompokkan) ================= -->
+    <section class="ftco-section ftco-no-pb" id="skill">
+      <div class="container">
+        <div class="row justify-content-center pb-5">
+          <div class="col-md-10 heading-section text-center reveal">
+            <h1 class="big big-2">Keahlian</h1>
+            <h2 class="mb-4">Skill</h2>
+            <p>
+              Kombinasi kemampuan analisis data, business intelligence,
+              machine learning, dan analisis sistem — didukung penguasaan
+              tools dan bahasa pemrograman untuk mengubah data menjadi solusi
+              yang mendukung pengambilan keputusan bisnis.
+            </p>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h4 class="skill-group__title reveal">Data &amp; Analytics</h4>
+          <div class="row reveal-group">
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>SQL</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" data-width="90"><span>90%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>Python</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" data-width="90"><span>90%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>Power BI</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" data-width="90"><span>90%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>Microsoft Excel</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" data-width="85"><span>85%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>Data Cleaning</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" data-width="90"><span>90%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>Exploratory Data Analysis</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" data-width="85"><span>85%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>Pandas</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" data-width="85"><span>85%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>NumPy</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" data-width="80"><span>80%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>DAX</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" data-width="80"><span>80%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>Power Query</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" data-width="85"><span>85%</span></div></div></div></div>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h4 class="skill-group__title reveal">Machine Learning &amp; AI</h4>
+          <div class="row reveal-group">
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>Machine Learning</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" data-width="80"><span>80%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>NLP</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" data-width="75"><span>75%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>TensorFlow</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" data-width="75"><span>75%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>YOLO</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" data-width="80"><span>80%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>Streamlit</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" data-width="80"><span>80%</span></div></div></div></div>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h4 class="skill-group__title reveal">System, Development &amp; Tools</h4>
+          <div class="row reveal-group">
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>System Analysis</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" data-width="90"><span>90%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>Requirement Gathering</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" data-width="85"><span>85%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>Business Process Analysis</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" data-width="85"><span>85%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>Database Design</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" data-width="90"><span>90%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>MySQL</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" data-width="85"><span>85%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>PostgreSQL</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" data-width="80"><span>80%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>Oracle Database</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" data-width="75"><span>75%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>PHP Laravel</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" data-width="75"><span>75%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>Java</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" data-width="75"><span>75%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>Git &amp; GitHub</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" data-width="80"><span>80%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>UML &amp; Flowchart</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" data-width="80"><span>80%</span></div></div></div></div>
+            <div class="col-md-6"><div class="progress-wrap reveal"><h3>Figma</h3><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" data-width="75"><span>75%</span></div></div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ORGANISASI ================= -->
+    <section class="ftco-section" id="Layanan">
+      <div class="container">
+        <div class="row justify-content-center py-5">
+          <div class="col-md-12 heading-section text-center reveal">
+            <h1 class="big big-2">Organisasi</h1>
+            <h2 class="mb-4">Pengalaman Organisasi</h2>
+            <p>
+              Pengalaman organisasi yang membantu saya mengembangkan
+              kemampuan kepemimpinan, komunikasi, kolaborasi tim, serta
+              pemecahan masalah dalam lingkungan akademik maupun
+              non-akademik.
+            </p>
+          </div>
+        </div>
+
+        <div class="row justify-content-center reveal-group">
+          <div class="col-md-5 text-center d-flex">
+            <div class="services-1 p-4 reveal">
+              <span class="icon"><i class="flaticon-analysis"></i></span>
+              <div class="desc">
+                <h3 class="mb-3">Google Developer Student Clubs (GDSC)</h3>
+                <p>
+                  Berpartisipasi dalam berbagai kegiatan dan workshop
+                  mengenai pengembangan perangkat lunak, Data Analytics,
+                  Artificial Intelligence, serta Machine Learning. Melalui
+                  komunitas ini saya meningkatkan kemampuan teknis, memperluas
+                  wawasan teknologi, dan berkolaborasi dengan mahasiswa dari
+                  berbagai bidang.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-5 text-center d-flex">
+            <div class="services-1 p-4 reveal">
+              <span class="icon"><i class="flaticon-ideas"></i></span>
+              <div class="desc">
+                <h3 class="mb-3">BSO Ruang Grafis</h3>
+                <p>
+                  Aktif dalam organisasi yang berfokus pada desain grafis dan
+                  media kreatif. Berkontribusi dalam pembuatan konten visual,
+                  publikasi kegiatan, serta bekerja sama dalam tim untuk
+                  menghasilkan media informasi yang menarik dan komunikatif.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROYEK ================= -->
+    <section class="ftco-section ftco-project" id="proyek">
+      <div class="container">
+        <div class="row justify-content-center pb-5">
+          <div class="col-md-10 heading-section text-center reveal">
+            <h1 class="big big-2">Proyek</h1>
+            <h2 class="mb-4">Portofolio Proyek</h2>
+            <p>
+              Beberapa proyek yang saya kerjakan dalam bidang Data
+              Analytics, Artificial Intelligence, Business Intelligence,
+              System Analysis, dan Web Development.
+            </p>
+          </div>
+        </div>
+
+        <!-- DATA & AI -->
+        <div class="project-category">
+          <div class="category-heading text-center mb-5 reveal">
+            <span class="category-label">01 — DATA &amp; AI</span>
+            <h2 class="mt-2 mb-3">Data Analytics &amp; Artificial Intelligence</h2>
+            <p class="category-description">
+              Proyek yang berfokus pada pengolahan data, analisis bisnis,
+              visualisasi, serta pengembangan solusi berbasis AI.
+            </p>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 mb-5">
+              <div class="project-card featured-project reveal">
+                <div class="project-carousel" id="aiCvCarousel">
+                  <div class="carousel-track">
+                    <div class="carousel-slide"><img src="images/1.png" alt="AI CV Screening Engine - Job Description dan Upload CV" /></div>
+                    <div class="carousel-slide"><img src="images/2.png" alt="AI CV Screening Engine - Parsed Job Requirements" /></div>
+                    <div class="carousel-slide"><img src="images/3.png" alt="AI CV Screening Engine - Candidate Ranking" /></div>
+                    <div class="carousel-slide"><img src="images/4.png" alt="AI CV Screening Engine - Candidate Detail" /></div>
+                    <div class="carousel-slide"><img src="images/5.png" alt="AI CV Screening Engine - Matched dan Missing Requirements" /></div>
+                  </div>
+                  <button class="carousel-control carousel-prev" type="button" aria-label="Gambar sebelumnya" onclick="moveAiCarousel(-1)">&#10094;</button>
+                  <button class="carousel-control carousel-next" type="button" aria-label="Gambar berikutnya" onclick="moveAiCarousel(1)">&#10095;</button>
+                  <div class="carousel-dots" aria-label="Screenshot AI CV Screening">
+                    <button class="carousel-dot active" type="button" onclick="showAiSlide(0)" aria-label="Screenshot 1"></button>
+                    <button class="carousel-dot" type="button" onclick="showAiSlide(1)" aria-label="Screenshot 2"></button>
+                    <button class="carousel-dot" type="button" onclick="showAiSlide(2)" aria-label="Screenshot 3"></button>
+                    <button class="carousel-dot" type="button" onclick="showAiSlide(3)" aria-label="Screenshot 4"></button>
+                    <button class="carousel-dot" type="button" onclick="showAiSlide(4)" aria-label="Screenshot 5"></button>
+                  </div>
+                  <div class="carousel-counter"><span id="aiSlideCurrent">01</span> / 05</div>
+                </div>
+
+                <div class="project-content">
+                  <div class="project-meta">
+                    <span class="project-number">01</span>
+                    <span class="project-date">AUG 2026</span>
+                  </div>
+                  <h3>AI CV Screening Engine</h3>
+                  <div class="project-tech">
+                    <span>Python</span><span>NLP</span><span>Sentence Transformers</span><span>Streamlit</span>
+                  </div>
+                  <p>Sistem AI untuk membantu mengotomatisasi proses screening dan ranking kandidat berdasarkan tingkat kesesuaian CV terhadap Job Description.</p>
+                  <p>Menerapkan hybrid matching yang menggabungkan exact, alias, fuzzy, dan semantic matching menggunakan <strong>all-MiniLM-L6-v2</strong>, serta weighted scoring dan fail-safe rules untuk mandatory requirements.</p>
+                  <div class="project-highlights">
+                    <div><strong>Output</strong><span>Shortlist / Review / Reject</span></div>
+                    <div><strong>Processing</strong><span>Multiple CV</span></div>
+                    <div><strong>Evidence</strong><span>Matched &amp; Missing Requirements</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 mb-5">
+              <div class="project-card reveal">
+                <div class="project-image"><img src="images/cus_segmentasion.png" alt="Retail Customer Analytics & Segmentation Dashboard" class="img-fluid" /></div>
+                <div class="project-content">
+                  <div class="project-meta"><span class="project-number">02</span><span class="project-date">JAN 2026</span></div>
+                  <h3>Retail Customer Analytics &amp; Segmentation</h3>
+                  <div class="project-tech"><span>Python</span><span>SQL</span><span>Power BI</span></div>
+                  <p>Analisis data pelanggan untuk mengidentifikasi customer behavior, pelanggan bernilai tinggi, pola pembelian, dan peluang peningkatan revenue.</p>
+                  <div class="project-stat"><strong>20K+</strong><span>Transaksi dianalisis</span></div>
+                  <div class="project-stat"><strong>53K+</strong><span>Unit produk dianalisis</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 mb-5">
+              <div class="project-card reveal">
+                <div class="project-image"><img src="images/retail.png" alt="Retail Sales Performance Dashboard" class="img-fluid" /></div>
+                <div class="project-content">
+                  <div class="project-meta"><span class="project-number">03</span><span class="project-date">JAN 2026</span></div>
+                  <h3>Retail Sales Performance Dashboard</h3>
+                  <div class="project-tech"><span>Microsoft Excel</span><span>Power BI</span></div>
+                  <p>Dashboard interaktif untuk memantau performa penjualan melalui KPI utama seperti Total Revenue, Total Orders, Total Units Sold, Total Discount, dan Cancellation Rate, serta analisis tren revenue, provinsi, kategori produk, metode pembayaran, dan metode pengiriman.</p>
+                  <div class="project-kpi"><span>Total Revenue</span><span>Total Orders</span><span>Units Sold</span><span>Cancellation Rate</span></div>
+                  <div class="project-dashboard-note"><small>Executive Overview Dashboard</small></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOFTWARE -->
+        <div class="project-category">
+          <div class="category-heading text-center mb-5 reveal">
+            <span class="category-label">02 — SOFTWARE</span>
+            <h2 class="mt-2 mb-3">Web Development &amp; System Analysis</h2>
+            <p class="category-description">
+              Pengembangan sistem informasi berbasis web mulai dari
+              requirement gathering, perancangan sistem, database, backend
+              development, hingga testing.
+            </p>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 mb-5">
+              <div class="project-card reveal">
+                <div class="row align-items-center">
+                  <div class="col-lg-6">
+                    <div class="project-image project-image-large"><img src="images/jejak_prestasi.jpeg" alt="Jejak Prestasi System" class="img-fluid" /></div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="project-content">
+                      <div class="project-meta"><span class="project-number">04</span></div>
+                      <h3>Jejak Prestasi</h3>
+                      <div class="project-tech"><span>PHP</span><span>PostgreSQL</span><span>Bootstrap</span><span>API</span></div>
+                      <p>Sistem informasi berbasis web untuk mendokumentasikan dan mengelola data prestasi mahasiswa dan dosen secara terpusat.</p>
+                      <ul class="project-list">
+                        <li>Requirement gathering &amp; system analysis</li>
+                        <li>Database relational design</li>
+                        <li>CRUD &amp; API integration</li>
+                        <li>User Acceptance Testing (UAT)</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-12 mb-5">
+              <div class="project-card reveal">
+                <div class="row align-items-center">
+                  <div class="col-lg-5 order-lg-2">
+                    <div class="project-image project-image-large"><img src="images/zakat.png" alt="E-Zakat Management System" class="img-fluid" /></div>
+                  </div>
+                  <div class="col-lg-7 order-lg-1">
+                    <div class="project-content">
+                      <div class="project-meta"><span class="project-number">05</span></div>
+                      <h3>E-Zakat Management System</h3>
+                      <div class="project-tech"><span>PHP Laravel</span><span>MySQL</span><span>Bootstrap</span></div>
+                      <p>Sistem informasi pengelolaan zakat berbasis web untuk mengelola data muzaki, mustahik, jenis zakat, transaksi pembayaran, distribusi dana, masjid mitra, dashboard, dan pelaporan.</p>
+                      <div class="project-kpi"><span>Transaction Management</span><span>Distribution</span><span>Reporting</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row project-gallery mt-4">
+                  <div class="col-md-6">
+                    <img src="images/zakat.png" alt="E-Zakat Transaction" class="img-fluid rounded" />
+                    <p class="gallery-caption">Transaksi Zakat</p>
+                  </div>
+                  <div class="col-md-6">
+                    <img src="images/add_distribution.png" alt="E-Zakat Distribution" class="img-fluid rounded" />
+                    <p class="gallery-caption">Distribusi Dana Zakat</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 mb-5">
+              <div class="project-card reveal">
+                <div class="project-image"><img src="images/caffe.png" alt="Coffee Shop Website" class="img-fluid" /></div>
+                <div class="project-content">
+                  <div class="project-meta"><span class="project-number">06</span></div>
+                  <h3>Coffee Shop Website</h3>
+                  <div class="project-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>PHP</span></div>
+                  <p>Website profil coffee shop dengan desain responsif yang menampilkan informasi produk, menu, galeri, dan kontak pelanggan.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 mb-5">
+              <div class="project-card reveal">
+                <div class="project-image"><img src="images/undangan.png" alt="Digital Invitation Website" class="img-fluid" /></div>
+                <div class="project-content">
+                  <div class="project-meta"><span class="project-number">07</span></div>
+                  <h3>Digital Invitation Website</h3>
+                  <div class="project-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+                  <p>Website undangan digital responsif dengan countdown, galeri foto, lokasi acara, buku tamu, dan elemen interaktif untuk meningkatkan pengalaman pengguna.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      .ftco-project { position: relative; }
+      .project-category { margin-bottom: 100px; }
+      .category-heading { max-width: 780px; margin: 0 auto; }
+      .category-label { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+      .category-heading h2 { font-weight: 700; }
+      .category-description { max-width: 680px; margin: 0 auto; opacity: .75; }
+      .project-content { padding: 30px; }
+      .project-image { width: 100%; height: 280px; overflow: hidden; background: rgba(0,0,0,.2); }
+      .project-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+      .project-card:hover .project-image img { transform: scale(1.03); }
+      .project-image-large { height: 360px; padding: 15px; }
+      .project-image-large img { object-fit: contain; }
+      .project-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; }
+      .project-number { font-weight: 700; opacity: .55; }
+      .project-date { opacity: .5; }
+      .project-card h3 { font-size: 25px; font-weight: 700; margin-bottom: 15px; }
+      .project-tech { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
+      .project-tech span, .project-kpi span { display: inline-block; padding: 6px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+      .project-content p { line-height: 1.8; margin-bottom: 14px; }
+      .featured-project .project-content { max-width: 980px; margin: 0 auto; padding: 42px; }
+      .project-highlights { display: flex; flex-wrap: wrap; gap: 30px; margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--border); }
+      .project-highlights div { display: flex; flex-direction: column; gap: 5px; }
+      .project-highlights strong { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text); }
+      .project-highlights span { font-size: 13px; opacity: .7; }
+      .project-stat { display: inline-flex; flex-direction: column; margin-right: 28px; margin-top: 10px; }
+      .project-stat strong { font-size: 24px; line-height: 1; color: var(--accent); }
+      .project-stat span { margin-top: 6px; font-size: 12px; opacity: .65; }
+      .project-kpi { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 20px; }
+      .project-list { padding-left: 18px; margin-top: 18px; }
+      .project-list li { margin-bottom: 8px; opacity: .8; }
+      .project-gallery { padding: 0 30px 30px; }
+      .project-gallery img { width: 100%; max-height: 350px; object-fit: contain; background: rgba(0,0,0,.2); }
+      .gallery-caption { text-align: center; margin-top: 12px; font-size: 13px; font-weight: 600; opacity: .7; }
+      .project-dashboard-note { margin-top: 16px; opacity: .65; }
+      .project-dashboard-note small { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+
+      .project-carousel { position: relative; width: 100%; overflow: hidden; background: #0d111b; border-radius: 14px 14px 0 0; }
+      .carousel-track { display: flex; width: 100%; transition: transform .45s ease; }
+      .carousel-slide { min-width: 100%; height: 500px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #0d111b; }
+      .carousel-slide img { width: 100%; height: 100%; object-fit: contain; display: block; }
+      .carousel-control { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; background: rgba(10,14,24,.78); color: #fff; font-size: 20px; line-height: 1; cursor: pointer; z-index: 5; transition: all .25s ease; }
+      .carousel-control:hover { transform: translateY(-50%) scale(1.06); background: var(--accent); color: #14140f; }
+      .carousel-prev { left: 18px; }
+      .carousel-next { right: 18px; }
+      .carousel-dots { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); display: flex; gap: 7px; z-index: 5; }
+      .carousel-dot { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.45); cursor: pointer; transition: all .25s ease; }
+      .carousel-dot.active { width: 22px; border-radius: 8px; background: var(--accent); }
+      .carousel-counter { position: absolute; right: 18px; bottom: 14px; padding: 5px 9px; border-radius: 12px; background: rgba(10,14,24,.72); color: rgba(255,255,255,.82); font-size: 10px; letter-spacing: 1px; z-index: 5; }
+
+      @media (max-width: 767px) {
+        .project-category { margin-bottom: 70px; }
+        .project-content, .featured-project .project-content { padding: 24px; }
+        .project-image { height: 230px; }
+        .project-image-large { height: 280px; }
+        .project-highlights { gap: 18px; }
+        .project-gallery { padding: 0 20px 20px; }
+        .carousel-slide { height: 270px; }
+        .carousel-control { width: 36px; height: 36px; font-size: 16px; }
+        .carousel-prev { left: 10px; }
+        .carousel-next { right: 10px; }
+        .carousel-dots { bottom: 12px; }
+      }
+    </style>
+
+    <!-- ================= SERTIFIKAT ================= -->
+    <section class="ftco-section ftco-project" id="sertifikat">
+      <div class="container">
+        <div class="row justify-content-center pb-5">
+          <div class="col-md-10 heading-section text-center reveal">
+            <h1 class="big big-2">Sertifikat</h1>
+            <h2 class="mb-4">Sertifikat</h2>
+            <p>Beberapa sertifikasi yang saya peroleh melalui pelatihan, bootcamp, dan program sertifikasi profesional.</p>
+          </div>
+        </div>
+
+        <div class="row reveal-group">
+          <div class="col-md-4 mb-4">
+            <div class="card"><img src="images/ml_engginer.png" class="card-img-top" alt="Machine Learning Engineer" />
+              <div class="card-body text-center reveal">
+                <h6>Machine Learning Engineer</h6>
+                <small class="text-muted d-block mb-2">DBS Foundation Coding Camp</small>
+                <a href="pdf/[Coding Camp 2025] Certificate - MC222D5Y1279.pdf" target="_blank" class="btn btn-primary">Lihat Sertifikat</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card"><img src="images/excel.png" class="card-img-top" alt="Microsoft Excel" />
+              <div class="card-body text-center reveal">
+                <h6>Microsoft Office Specialist - Excel</h6>
+                <small class="text-muted d-block mb-2">PTIPD UIN Sunan Gunung Djati Bandung × Lumina Eka Optima</small>
+                <a href="pdf/Sertifikat ICT.pdf" target="_blank" class="btn btn-primary">Lihat Sertifikat</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card"><img src="images/sertif database design.png" class="card-img-top" alt="Database Design" />
+              <div class="card-body text-center reveal">
+                <h6>Database Design</h6>
+                <small class="text-muted d-block mb-2">Oracle Academy</small>
+                <a href="pdf/clmsCertificate (2).pdf" target="_blank" class="btn btn-primary">Lihat Sertifikat</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card"><img src="images/setif sql.png" class="card-img-top" alt="Database Programming with SQL" />
+              <div class="card-body text-center reveal">
+                <h6>Database Programming with SQL</h6>
+                <small class="text-muted d-block mb-2">Oracle Academy</small>
+                <a href="pdf/clmsCertificate (1) (1).pdf" target="_blank" class="btn btn-primary">Lihat Sertifikat</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card"><img src="images/linuk.png" class="card-img-top" alt="NDG Linux Essentials" />
+              <div class="card-body text-center reveal">
+                <h6>NDG Linux Essentials</h6>
+                <small class="text-muted d-block mb-2">Cisco Networking Academy</small>
+                <a href="pdf/sertifikat cisco LINUX.pdf" target="_blank" class="btn btn-primary">Lihat Sertifikat</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card"><img src="images/network.png" class="card-img-top" alt="CCNA: Introduction to Networks" />
+              <div class="card-body text-center reveal">
+                <h6>CCNA: Introduction to Networks</h6>
+                <small class="text-muted d-block mb-2">Cisco Networking Academy</small>
+                <a href="pdf/_certificate_adipurnamaa8-gmail-com_d589d14f-181f-4464-8e8e-8c791cda6e00.pdf" target="_blank" class="btn btn-primary">Lihat Sertifikat</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card"><img src="images/java.png" class="card-img-top" alt="Java" />
+              <div class="card-body text-center reveal">
+                <h6>Memulai Pemrograman dengan Java</h6>
+                <small class="text-muted d-block mb-2">Dicoding Indonesia</small>
+                <a href="pdf/sertifikat_course_AdiPurnama_1227050004.pdf" target="_blank" class="btn btn-primary">Lihat Sertifikat</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card"><img src="images/sql.png" class="card-img-top" alt="SQL" />
+              <div class="card-body text-center reveal">
+                <h6>Belajar Dasar Structured Query Language (SQL)</h6>
+                <small class="text-muted d-block mb-2">Dicoding Indonesia</small>
+                <a href="pdf/sertif sql.pdf" target="_blank" class="btn btn-primary">Lihat Sertifikat</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card"><img src="images/analis_py.png" class="card-img-top" alt="Python" />
+              <div class="card-body text-center reveal">
+                <h6>Belajar Analisis Data dengan Python</h6>
+                <small class="text-muted d-block mb-2">Dicoding Indonesia</small>
+                <a href="pdf/analis py.pdf" target="_blank" class="btn btn-primary">Lihat Sertifikat</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card"><img src="images/visualisasi_data.png" class="card-img-top" alt="Visualisasi Data" />
+              <div class="card-body text-center reveal">
+                <h6>Belajar Dasar Visualisasi Data</h6>
+                <small class="text-muted d-block mb-2">Dicoding Indonesia</small>
+                <a href="pdf/visualisasi data.pdf" target="_blank" class="btn btn-primary">Lihat Sertifikat</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card"><img src="images/fundamental_pemrosesan_data.png" class="card-img-top" alt="Pemrosesan Data" />
+              <div class="card-body text-center reveal">
+                <h6>Belajar Fundamental Pemrosesan Data</h6>
+                <small class="text-muted d-block mb-2">Dicoding Indonesia</small>
+                <a href="pdf/pemrosesan data.pdf" target="_blank" class="btn btn-primary">Lihat Sertifikat</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card"><img src="images/ml_terapan.png" class="card-img-top" alt="Machine Learning Terapan" />
+              <div class="card-body text-center reveal">
+                <h6>Machine Learning Terapan</h6>
+                <small class="text-muted d-block mb-2">Dicoding Indonesia</small>
+                <a href="pdf/ml_terapan.pdf" target="_blank" class="btn btn-primary">Lihat Sertifikat</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/batu_kuda.jpg);">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 text-center reveal">
+            <h2>Siap <span>Berkontribusi</span> dan Terus Berkembang</h2>
+            <p class="mb-0"><a href="mailto:adipurnamaa4@gmail.com" class="btn btn-primary py-3 px-5">Hubungi Saya</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= KONTAK ================= -->
+    <section class="ftco-section contact-section ftco-no-pb" id="kontak">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-8 heading-section text-center reveal">
+            <h1 class="big big-2">Kontak</h1>
+            <h2 class="mb-4">Hubungi Saya</h2>
+            <p>
+              Terima kasih telah mengunjungi portofolio saya. Saya terbuka
+              terhadap peluang kerja, kolaborasi, maupun diskusi terkait
+              Data Analytics, Business Intelligence, Machine Learning, dan
+              pengembangan teknologi. Jangan ragu untuk menghubungi saya
+              melalui informasi di bawah ini.
+            </p>
+          </div>
+        </div>
+
+        <div class="row d-flex contact-info justify-content-center reveal-group">
+          <div class="col-md-6 col-lg-4 d-flex">
+            <div class="align-self-stretch box p-4 text-center reveal">
+              <div class="icon d-flex align-items-center justify-content-center"><span class="icon-paper-plane"></span></div>
+              <h3 class="mb-3">Email</h3>
+              <p><a href="mailto:adipurnamaa4@gmail.com">adipurnamaa4@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 d-flex">
+            <div class="align-self-stretch box p-4 text-center reveal">
+              <div class="icon d-flex align-items-center justify-content-center"><span class="icon-linkedin"></span></div>
+              <h3 class="mb-3">LinkedIn</h3>
+              <p><a href="https://www.linkedin.com/in/adi-purnama-83674b278/" target="_blank">linkedin.com/in/adi-purnama-83674b278</a></p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 d-flex">
+            <div class="align-self-stretch box p-4 text-center reveal">
+              <div class="icon d-flex align-items-center justify-content-center"><span class="icon-github"></span></div>
+              <h3 class="mb-3">GitHub</h3>
+              <p><a href="https://github.com/Adipurnama7" target="_blank">github.com/Adipurnama7</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="ftco-footer ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-5">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Adi Purnama</h2>
+              <p>
+                Fresh Graduate Informatika yang berfokus pada Data
+                Analytics, Business Intelligence, dan Machine Learning.
+                Terbiasa menggunakan Python, SQL, Power BI, dan Microsoft
+                Excel untuk mengolah data serta menghasilkan insight yang
+                mendukung pengambilan keputusan.
+              </p>
+              <ul class="ftco-footer-social list-unstyled mt-4">
+                <li><a href="https://instagram.com/adiipurnamaaa/" target="_blank"><span class="icon-instagram"></span></a></li>
+                <li><a href="https://www.linkedin.com/in/adi-purnama-83674b278/" target="_blank"><span class="icon-linkedin"></span></a></li>
+                <li><a href="https://github.com/Adipurnama7" target="_blank"><span class="icon-github"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="ftco-footer-widget mb-4 ml-md-4">
+              <h2 class="ftco-heading-2">Navigasi</h2>
+              <ul class="list-unstyled">
+                <li><a href="#home-section">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#Education">Pendidikan</a></li>
+                <li><a href="#skill">Skill</a></li>
+                <li><a href="#proyek">Proyek</a></li>
+                <li><a href="#sertifikat">Sertifikat</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Kontak</h2>
+              <ul class="list-unstyled">
+                <li><span class="icon icon-map-marker"></span> Jakarta, Indonesia</li>
+                <li><span class="icon icon-envelope"></span> adipurnamaa4@gmail.com</li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4">
-            <div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/renang.jpg)">
-              <div class="overlay"></div>
-              <div class="text text-center p-4">
-                <h3><a href="#">Berenang </a></h3>
-                <span>Situ Cipaten</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-8">
-            <div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/Gambar\ WhatsApp\ 2023-08-06\ pukul\ 15.30.57.jpg)">
-              <div class="overlay"></div>
-              <div class="text text-center p-4">
-                <h3><a href="#">Kuliah Praktikum Algoritma & Pemrograman</a></h3>
-                <span>Lab. Programing</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-8">
-            <div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/batu\ kuda.jpg)">
-              <div class="overlay"></div>
-              <div class="text text-center p-4">
-                <h3><a href="#">Sunrise</a></h3>
-                <span>Batu Kuda</span>
-              </div>
-            </div>
-
-            <div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/gunung.jpg)">
-              <div class="overlay"></div>
-              <div class="text text-center p-4">
-                <h3><a href="#">Jalur Pendakian</a></h3>
-                <span>MT. Manglayang</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/Gambar\ WhatsApp\ 2023-08-06\ pukul\ 22.14.10.jpg)">
-                  <div class="overlay"></div>
-                  <div class="text text-center p-4">
-                    <h3><a href="#">Puncak Manglayang</h3>
-                    <span>MT. Manglayang</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="project img ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/pinus.jpg)">
-                  <div class="overlay"></div>
-                  <div class="text text-center p-4">
-                    <h3><a href="#">Hutan Pinus </a></h3>
-                    <span>Batu Kuda</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="col-md-12 text-center">
+            <p>© <script>document.write(new Date().getFullYear());</script> Adi Purnama. All Rights Reserved.</p>
           </div>
         </div>
       </div>
-    </section> -->
+    </footer>
 
-   
-
-
-
-   <section class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/batu\ kuda.jpg);">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8 ftco-animate text-center">
-
-        <h2>Siap <span>Berkontribusi</span> dan Terus Berkembang</h2>
-
-
-        <p class="mb-0">
-          <a href="mailto:adipurnamaa4@gmail.com"
-             class="btn btn-primary py-3 px-5">
-            Hubungi Saya
-          </a>
-        </p>
-
-      </div>
-    </div>
-  </div>
-</section>
-    
-
-    <section class="ftco-section contact-section ftco-no-pb" id="kontak">
-  <div class="container">
-
-    <div class="row justify-content-center mb-5 pb-3">
-      <div class="col-md-8 heading-section text-center ftco-animate">
-        <h1 class="big big-2">Kontak</h1>
-        <h2 class="mb-4">Hubungi Saya</h2>
-
-        <p>
-          Terima kasih telah mengunjungi portofolio saya.
-          Saya terbuka terhadap peluang kerja, kolaborasi, maupun diskusi
-          terkait Data Analytics, Business Intelligence, Machine Learning,
-          dan pengembangan teknologi. Jangan ragu untuk menghubungi saya
-          melalui informasi di bawah ini.
-        </p>
-
-      </div>
-    </div>
-
-    <div class="row d-flex contact-info justify-content-center">
-
-      <!-- Lokasi -->
-      <!-- <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-        <div class="align-self-stretch box p-4 text-center">
-
-          <div class="icon d-flex align-items-center justify-content-center">
-            <span class="icon-map-signs"></span>
-          </div>
-
-          <h3 class="mb-3">Lokasi</h3>
-
-          <p>
-            <a href="https://www.google.com/maps/place/Majalengka,+West+Java"
-               target="_blank">
-              Majalengka, Jawa Barat
-            </a>
-          </p>
-
-        </div>
-      </div> -->
-
-      <!-- Email -->
-      <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-        <div class="align-self-stretch box p-4 text-center">
-
-          <div class="icon d-flex align-items-center justify-content-center">
-            <span class="icon-paper-plane"></span>
-          </div>
-
-          <h3 class="mb-3">Email</h3>
-
-          <p>
-            <a href="mailto:adipurnamaa4@gmail.com">
-              adipurnamaa4@gmail.com
-            </a>
-          </p>
-
-        </div>
-      </div>
-
-      <!-- LinkedIn -->
-      <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-        <div class="align-self-stretch box p-4 text-center">
-
-          <div class="icon d-flex align-items-center justify-content-center">
-            <span class="icon-linkedin"></span>
-          </div>
-
-          <h3 class="mb-3">LinkedIn</h3>
-
-          <p>
-            <a href="https://www.linkedin.com/in/adi-purnama-83674b278/"
-               target="_blank">
-              linkedin.com/in/adi-purnama-83674b278
-            </a>
-          </p>
-
-        </div>
-      </div>
-
-      <!-- GitHub -->
-      <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-        <div class="align-self-stretch box p-4 text-center">
-
-          <div class="icon d-flex align-items-center justify-content-center">
-            <span class="icon-github"></span>
-          </div>
-
-          <h3 class="mb-3">GitHub</h3>
-
-          <p>
-            <a href="https://github.com/Adipurnama7"
-               target="_blank">
-              github.com/Adipurnama7
-            </a>
-          </p>
-
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-   <footer class="ftco-footer ftco-section">
-  <div class="container">
-
-    <div class="row mb-5">
-
-      <!-- About -->
-      <div class="col-md-5">
-        <div class="ftco-footer-widget mb-4">
-          <h2 class="ftco-heading-2">Adi Purnama</h2>
-
-          <p>
-            Fresh Graduate Informatika yang berfokus pada
-            Data Analytics, Business Intelligence, dan Machine Learning.
-            Terbiasa menggunakan Python, SQL, Power BI, dan Microsoft Excel
-            untuk mengolah data serta menghasilkan insight yang mendukung
-            pengambilan keputusan.
-          </p>
-
-          <ul class="ftco-footer-social list-unstyled mt-4">
-
-            <li class="ftco-animate">
-              <a href="https://instagram.com/adiipurnamaaa/"
-                 target="_blank">
-                <span class="icon-instagram"></span>
-              </a>
-            </li>
-
-            <li class="ftco-animate">
-              <a href="https://www.linkedin.com/in/adi-purnama-83674b278/"
-                 target="_blank">
-                <span class="icon-linkedin"></span>
-              </a>
-            </li>
-
-            <li class="ftco-animate">
-              <a href="https://github.com/Adipurnama7"
-                 target="_blank">
-                <span class="icon-github"></span>
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-      </div>
-
-      <!-- Navigation -->
-      <div class="col-md-3">
-        <div class="ftco-footer-widget mb-4 ml-md-4">
-
-          <h2 class="ftco-heading-2">Navigasi</h2>
-
-          <ul class="list-unstyled">
-
-            <li><a href="#home">Beranda</a></li>
-            <li><a href="#about">Tentang</a></li>
-            <li><a href="#resume">Pendidikan</a></li>
-            <li><a href="#skill">Skill</a></li>
-            <li><a href="#proyek">Proyek</a></li>
-            <li><a href="#sertifikat">Sertifikat</a></li>
-            <li><a href="#contact">Kontak</a></li>
-
-          </ul>
-
-        </div>
-      </div>
-
-      <!-- Contact -->
-      <div class="col-md-4">
-        <div class="ftco-footer-widget mb-4">
-
-          <h2 class="ftco-heading-2">Kontak</h2>
-
-          <ul class="list-unstyled">
-
-            <li>
-              <span class="icon icon-map-marker"></span>
-              Bandung, Indonesia
-            </li>
-
-            <li>
-              <span class="icon icon-envelope"></span>
-              adipurnamaa4@gmail.com
-            </li>
-
-          </ul>
-
-        </div>
-      </div>
-
-    </div>
-
-    <div class="row">
-      <div class="col-md-12 text-center">
-
-        <p>
-          © <script>document.write(new Date().getFullYear());</script>
-          Adi Purnama. All Rights Reserved.
-        </p>
-
-      </div>
-    </div>
-
-  </div>
-</footer>
-
-    <!-- loader -->
     <div id="ftco-loader" class="show fullscreen">
       <svg class="circular" width="48px" height="48px">
         <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
         <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
       </svg>
     </div>
+
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -1620,7 +1066,78 @@ Machine Learning, dan Business Intelligence</strong>. Saya terbiasa menggunakan
     <script src="js/aos.js"></script>
     <script src="js/jquery.animateNumber.min.js"></script>
     <script src="js/scrollax.min.js"></script>
-
     <script src="js/main.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // ---- Reveal on scroll ----
+        var revealEls = document.querySelectorAll('.reveal');
+        var revealIo = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              revealIo.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        revealEls.forEach(function (el) { revealIo.observe(el); });
+
+        // ---- Animated skill bars ----
+        var bars = document.querySelectorAll('.progress-bar[data-width]');
+        var barIo = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              var el = entry.target;
+              el.style.width = el.getAttribute('data-width') + '%';
+              barIo.unobserve(el);
+            }
+          });
+        }, { threshold: 0.4 });
+        bars.forEach(function (bar) { barIo.observe(bar); });
+
+        // ---- AI CV Screening carousel ----
+        var aiCurrentSlide = 0;
+        var aiTotalSlides = 5;
+
+        function renderAiCarousel() {
+          var track = document.querySelector('#aiCvCarousel .carousel-track');
+          var dots = document.querySelectorAll('#aiCvCarousel .carousel-dot');
+          var current = document.getElementById('aiSlideCurrent');
+          if (!track) return;
+          track.style.transform = 'translateX(-' + (aiCurrentSlide * 100) + '%)';
+          dots.forEach(function (dot, index) {
+            dot.classList.toggle('active', index === aiCurrentSlide);
+          });
+          if (current) current.textContent = String(aiCurrentSlide + 1).padStart(2, '0');
+        }
+
+        window.showAiSlide = function (index) {
+          aiCurrentSlide = (index + aiTotalSlides) % aiTotalSlides;
+          renderAiCarousel();
+        };
+
+        window.moveAiCarousel = function (direction) {
+          aiCurrentSlide = (aiCurrentSlide + direction + aiTotalSlides) % aiTotalSlides;
+          renderAiCarousel();
+        };
+
+        var carousel = document.getElementById('aiCvCarousel');
+        var touchStartX = 0;
+        if (carousel) {
+          carousel.addEventListener('touchstart', function (event) {
+            touchStartX = event.changedTouches[0].screenX;
+          }, { passive: true });
+          carousel.addEventListener('touchend', function (event) {
+            var touchEndX = event.changedTouches[0].screenX;
+            var distance = touchEndX - touchStartX;
+            if (Math.abs(distance) > 45) {
+              window.moveAiCarousel(distance < 0 ? 1 : -1);
+            }
+          }, { passive: true });
+        }
+
+        renderAiCarousel();
+      });
+    </script>
   </body>
 </html>
