@@ -58,12 +58,37 @@
       }
 
       /* ================= HEADINGS ================= */
-      .heading-section h1.big { opacity: 0.06; }
+      .heading-section {
+        position: relative;
+        overflow: hidden;
+      }
+      /* Selalu center-kan teks besar di belakang judul, baik pakai .big-2 atau tidak */
+      .heading-section h1.big,
+      .heading-section h1.big.big-2 {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 100vw;
+        margin: 0;
+        text-align: center;
+        white-space: nowrap;
+        font-size: 7vw;
+        color: rgba(255, 255, 255, 0.06);
+        z-index: -1;
+        font-weight: 900;
+        pointer-events: none;
+      }
       .heading-section h2 { font-size: 2.4rem; font-weight: 600; }
       .heading-section .subheading {
         color: var(--accent) !important;
         font-size: 12px;
         letter-spacing: 2.5px;
+      }
+      @media (max-width: 991.98px) {
+        .heading-section h1.big { font-size: 12vw; }
       }
 
       /* ================= BUTTONS ================= */
@@ -101,8 +126,11 @@
       .hero-pro__role { color: var(--text); font-weight: 400; font-size: clamp(20px, 4vw, 28px); margin-top: 10px; }
       .hero-pro__focus { color: var(--accent); font-size: clamp(15px, 3vw, 18px); margin-top: 18px; }
       .hero-pro__desc { color: var(--text-muted); font-size: 16.5px; margin-top: 24px; max-width: 540px; }
-      .hero-pro__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
-      .hero-pro__img { width: 100%; max-width: 480px; border-radius: 16px; }
+      .hero-pro__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; justify-content: center; }
+      @media (min-width: 992px) {
+        .hero-pro__actions { justify-content: flex-start; }
+      }
+      .hero-pro__img { width: 100%; max-width: 480px; border-radius: 16px; margin: 0 auto; display: block; }
 
       @keyframes fadeUp {
         from { opacity: 0; transform: translateY(18px); }
@@ -155,6 +183,17 @@
       .services-1:hover .desc h3 a { color: var(--accent) !important; }
       .services-1:hover .desc h3:after { background: var(--accent) !important; }
 
+      /* Rapikan kartu Organisasi supaya sama tinggi & benar-benar center */
+      #Layanan .row.justify-content-center { align-items: stretch; }
+      #Layanan .col-md-5.d-flex { display: flex; }
+      #Layanan .services-1 {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
       /* ================= SKILL SECTION ================= */
       .skill-group { margin-bottom: 50px; }
       .skill-group:last-child { margin-bottom: 0; }
@@ -183,6 +222,7 @@
         border: 1px solid var(--border) !important;
         border-radius: 14px !important;
         transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+        height: 100%;
       }
       .project-card:hover {
         border-color: var(--accent) !important;
@@ -443,7 +483,7 @@
       </div>
     </section>
 
-    <!-- ================= SKILL (digabung, dikelompokkan) ================= -->
+    <!-- ================= SKILL ================= -->
     <section class="ftco-section ftco-no-pb" id="skill">
       <div class="container">
         <div class="row justify-content-center pb-5">
@@ -513,7 +553,7 @@
           <div class="col-md-12 heading-section text-center reveal">
             <h1 class="big big-2">Organisasi</h1>
             <h2 class="mb-4">Pengalaman Organisasi</h2>
-            <p>
+            <p class="mx-auto">
               Pengalaman organisasi yang membantu saya mengembangkan
               kemampuan kepemimpinan, komunikasi, kolaborasi tim, serta
               pemecahan masalah dalam lingkungan akademik maupun
@@ -558,198 +598,253 @@
       </div>
     </section>
 
-    <!-- ================= PROYEK ================= -->
-    <section class="ftco-section ftco-project" id="proyek">
-      <div class="container">
-        <div class="row justify-content-center pb-5">
-          <div class="col-md-10 heading-section text-center reveal">
-            <h1 class="big big-2">Proyek</h1>
-            <h2 class="mb-4">Portofolio Proyek</h2>
-            <p>
-              Beberapa proyek yang saya kerjakan dalam bidang Data
-              Analytics, Artificial Intelligence, Business Intelligence,
-              System Analysis, dan Web Development.
-            </p>
-          </div>
-        </div>
+   <!-- ================= PROYEK ================= -->
+<section class="ftco-section ftco-project" id="proyek">
+  <div class="container">
+    <div class="row justify-content-center pb-5">
+      <div class="col-md-10 heading-section text-center reveal">
+        <h1 class="big big-2">Proyek</h1>
+        <h2 class="mb-4">Portofolio Proyek</h2>
+        <p>
+          Beberapa proyek yang saya kerjakan dalam bidang Data Analytics,
+          Artificial Intelligence, Business Intelligence, System Analysis,
+          dan Web Development.
+        </p>
+      </div>
+    </div>
 
-        <!-- DATA & AI -->
-        <div class="project-category">
-          <div class="category-heading text-center mb-5 reveal">
-            <span class="category-label">01 — DATA &amp; AI</span>
-            <h2 class="mt-2 mb-3">Data Analytics &amp; Artificial Intelligence</h2>
-            <p class="category-description">
-              Proyek yang berfokus pada pengolahan data, analisis bisnis,
-              visualisasi, serta pengembangan solusi berbasis AI.
-            </p>
-          </div>
+    <!-- DATA & AI -->
+    <div class="project-category">
+      <div class="category-heading text-center mb-5 reveal">
+        <span class="category-label">01 — DATA &amp; AI</span>
+        <h2 class="mt-2 mb-3">Data Analytics &amp; Artificial Intelligence</h2>
+        <p class="category-description">
+          Proyek yang berfokus pada pengolahan data, analisis bisnis,
+          visualisasi, serta pengembangan solusi berbasis AI.
+        </p>
+      </div>
 
-          <div class="row">
-            <div class="col-lg-12 mb-5">
-              <div class="project-card featured-project reveal">
-                <div class="project-carousel" id="aiCvCarousel">
-                  <div class="carousel-track">
-                    <div class="carousel-slide"><img src="images/1.png" alt="AI CV Screening Engine - Job Description dan Upload CV" /></div>
-                    <div class="carousel-slide"><img src="images/2.png" alt="AI CV Screening Engine - Parsed Job Requirements" /></div>
-                    <div class="carousel-slide"><img src="images/3.png" alt="AI CV Screening Engine - Candidate Ranking" /></div>
-                    <div class="carousel-slide"><img src="images/4.png" alt="AI CV Screening Engine - Candidate Detail" /></div>
-                    <div class="carousel-slide"><img src="images/5.png" alt="AI CV Screening Engine - Matched dan Missing Requirements" /></div>
-                  </div>
-                  <button class="carousel-control carousel-prev" type="button" aria-label="Gambar sebelumnya" onclick="moveAiCarousel(-1)">&#10094;</button>
-                  <button class="carousel-control carousel-next" type="button" aria-label="Gambar berikutnya" onclick="moveAiCarousel(1)">&#10095;</button>
-                  <div class="carousel-dots" aria-label="Screenshot AI CV Screening">
-                    <button class="carousel-dot active" type="button" onclick="showAiSlide(0)" aria-label="Screenshot 1"></button>
-                    <button class="carousel-dot" type="button" onclick="showAiSlide(1)" aria-label="Screenshot 2"></button>
-                    <button class="carousel-dot" type="button" onclick="showAiSlide(2)" aria-label="Screenshot 3"></button>
-                    <button class="carousel-dot" type="button" onclick="showAiSlide(3)" aria-label="Screenshot 4"></button>
-                    <button class="carousel-dot" type="button" onclick="showAiSlide(4)" aria-label="Screenshot 5"></button>
-                  </div>
-                  <div class="carousel-counter"><span id="aiSlideCurrent">01</span> / 05</div>
-                </div>
-
-                <div class="project-content">
-                  <div class="project-meta">
-                    <span class="project-number">01</span>
-                    <span class="project-date">AUG 2026</span>
-                  </div>
-                  <h3>AI CV Screening Engine</h3>
-                  <div class="project-tech">
-                    <span>Python</span><span>NLP</span><span>Sentence Transformers</span><span>Streamlit</span>
-                  </div>
-                  <p>Sistem AI untuk membantu mengotomatisasi proses screening dan ranking kandidat berdasarkan tingkat kesesuaian CV terhadap Job Description.</p>
-                  <p>Menerapkan hybrid matching yang menggabungkan exact, alias, fuzzy, dan semantic matching menggunakan <strong>all-MiniLM-L6-v2</strong>, serta weighted scoring dan fail-safe rules untuk mandatory requirements.</p>
-                  <div class="project-highlights">
-                    <div><strong>Output</strong><span>Shortlist / Review / Reject</span></div>
-                    <div><strong>Processing</strong><span>Multiple CV</span></div>
-                    <div><strong>Evidence</strong><span>Matched &amp; Missing Requirements</span></div>
-                  </div>
-                </div>
+      <div class="row">
+          <!-- AI CV Screening -->
+        <div class="col-lg-6 mb-5">
+          <div class="project-card reveal">
+            <div class="project-carousel project-carousel--sm">
+              <div class="carousel-track">
+                <div class="carousel-slide"><img src="images/1.png" alt="AI CV Screening Engine - Job Description dan Upload CV" /></div>
+                <div class="carousel-slide"><img src="images/2.png" alt="AI CV Screening Engine - Parsed Job Requirements" /></div>
+                <div class="carousel-slide"><img src="images/3.png" alt="AI CV Screening Engine - Candidate Ranking" /></div>
+                <div class="carousel-slide"><img src="images/4.png" alt="AI CV Screening Engine - Candidate Detail" /></div>
+                <div class="carousel-slide"><img src="images/5.png" alt="AI CV Screening Engine - Matched dan Missing Requirements" /></div>
               </div>
+              <button class="carousel-control carousel-prev" type="button" aria-label="Gambar sebelumnya">&#10094;</button>
+              <button class="carousel-control carousel-next" type="button" aria-label="Gambar berikutnya">&#10095;</button>
+              <div class="carousel-dots" aria-label="Screenshot AI CV Screening">
+                <button class="carousel-dot active" type="button" aria-label="Screenshot 1"></button>
+                <button class="carousel-dot" type="button" aria-label="Screenshot 2"></button>
+                <button class="carousel-dot" type="button" aria-label="Screenshot 3"></button>
+                <button class="carousel-dot" type="button" aria-label="Screenshot 4"></button>
+                <button class="carousel-dot" type="button" aria-label="Screenshot 5"></button>
+              </div>
+              <div class="carousel-counter"><span class="carousel-counter-current">01</span> / <span class="carousel-counter-total">05</span></div>
             </div>
 
-            <div class="col-lg-6 mb-5">
-              <div class="project-card reveal">
-                <div class="project-image"><img src="images/cus_segmentasion.png" alt="Retail Customer Analytics & Segmentation Dashboard" class="img-fluid" /></div>
-                <div class="project-content">
-                  <div class="project-meta"><span class="project-number">02</span><span class="project-date">JAN 2026</span></div>
-                  <h3>Retail Customer Analytics &amp; Segmentation</h3>
-                  <div class="project-tech"><span>Python</span><span>SQL</span><span>Power BI</span></div>
-                  <p>Analisis data pelanggan untuk mengidentifikasi customer behavior, pelanggan bernilai tinggi, pola pembelian, dan peluang peningkatan revenue.</p>
-                  <div class="project-stat"><strong>20K+</strong><span>Transaksi dianalisis</span></div>
-                  <div class="project-stat"><strong>53K+</strong><span>Unit produk dianalisis</span></div>
-                </div>
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="project-number">02</span>
+                <span class="project-date">AUG 2026</span>
               </div>
-            </div>
-
-            <div class="col-lg-6 mb-5">
-              <div class="project-card reveal">
-                <div class="project-image"><img src="images/retail.png" alt="Retail Sales Performance Dashboard" class="img-fluid" /></div>
-                <div class="project-content">
-                  <div class="project-meta"><span class="project-number">03</span><span class="project-date">JAN 2026</span></div>
-                  <h3>Retail Sales Performance Dashboard</h3>
-                  <div class="project-tech"><span>Microsoft Excel</span><span>Power BI</span></div>
-                  <p>Dashboard interaktif untuk memantau performa penjualan melalui KPI utama seperti Total Revenue, Total Orders, Total Units Sold, Total Discount, dan Cancellation Rate, serta analisis tren revenue, provinsi, kategori produk, metode pembayaran, dan metode pengiriman.</p>
-                  <div class="project-kpi"><span>Total Revenue</span><span>Total Orders</span><span>Units Sold</span><span>Cancellation Rate</span></div>
-                  <div class="project-dashboard-note"><small>Executive Overview Dashboard</small></div>
-                </div>
+              <h3>AI CV Screening Engine</h3>
+              <div class="project-tech">
+                <span>Python</span><span>NLP</span><span>Sentence Transformers</span><span>Streamlit</span>
+              </div>
+              <p>Sistem AI untuk membantu mengotomatisasi proses screening dan ranking kandidat berdasarkan tingkat kesesuaian CV terhadap Job Description, menerapkan hybrid matching (exact, alias, fuzzy, semantic) menggunakan <strong>all-MiniLM-L6-v2</strong>.</p>
+              <div class="project-highlights">
+                <div><strong>Output</strong><span>Shortlist / Review / Reject</span></div>
+                <div><strong>Processing</strong><span>Multiple CV</span></div>
+                <div><strong>Evidence</strong><span>Matched &amp; Missing Requirements</span></div>
               </div>
             </div>
           </div>
         </div>
+        
+        <!-- BatiKnow -->
+        <div class="col-lg-6 mb-5">
+          <div class="project-card reveal">
+            <div class="project-carousel project-carousel--sm">
+              <div class="carousel-track">
+                <div class="carousel-slide"><img src="images/batiknow-4.png" alt="BatiKnow - Halaman Home" /></div>
+                 <div class="carousel-slide"><img src="images/batiknow-1.png" alt="BatiKnow - Halaman Sign In" /></div>
+                <div class="carousel-slide"><img src="images/batiknow-2.png" alt="BatiKnow - Halaman Scan Motif Batik" /></div>
+                <div class="carousel-slide"><img src="images/batiknow-3.png" alt="BatiKnow - Koleksi Motif Batik" /></div>
+                <!-- <div class="carousel-slide"><img src="images/batiknow-5.png" alt="BatiKnow - Halaman Sign Up" /></div> -->
+                <div class="carousel-slide"><img src="images/batiknow-6.png" alt="BatiKnow - Grafik Loss dan Accuracy Model" /></div>
+                <div class="carousel-slide"><img src="images/batiknow-7.png" alt="BatiKnow - Ringkasan Arsitektur Model" /></div>
+              </div>
+              <button class="carousel-control carousel-prev" type="button" aria-label="Gambar sebelumnya">&#10094;</button>
+              <button class="carousel-control carousel-next" type="button" aria-label="Gambar berikutnya">&#10095;</button>
+              <div class="carousel-dots" aria-label="Screenshot BatiKnow">
+                <button class="carousel-dot active" type="button" aria-label="Screenshot 1"></button>
+                <button class="carousel-dot" type="button" aria-label="Screenshot 2"></button>
+                <button class="carousel-dot" type="button" aria-label="Screenshot 3"></button>
+                <button class="carousel-dot" type="button" aria-label="Screenshot 4"></button>
+                <button class="carousel-dot" type="button" aria-label="Screenshot 5"></button>
+                <button class="carousel-dot" type="button" aria-label="Screenshot 6"></button>
+                <button class="carousel-dot" type="button" aria-label="Screenshot 7"></button>
+              </div>
+              <div class="carousel-counter"><span class="carousel-counter-current">01</span> / <span class="carousel-counter-total">06</span></div>
+            </div>
 
-        <!-- SOFTWARE -->
-        <div class="project-category">
-          <div class="category-heading text-center mb-5 reveal">
-            <span class="category-label">02 — SOFTWARE</span>
-            <h2 class="mt-2 mb-3">Web Development &amp; System Analysis</h2>
-            <p class="category-description">
-              Pengembangan sistem informasi berbasis web mulai dari
-              requirement gathering, perancangan sistem, database, backend
-              development, hingga testing.
-            </p>
+            <div class="project-content">
+              <div class="project-meta">
+                <span class="project-number">01</span>
+                <span class="project-date">JUL 2025</span>
+              </div>
+              <h3>BatiKnow — Batik Motif Recognition</h3>
+              <div class="project-tech">
+                <span>Python</span><span>TensorFlow</span><span>EfficientNet</span><span>Transfer Learning</span>
+              </div>
+              <p>
+                Capstone project pada Coding Camp powered by DBS Foundation
+                &amp; Dicoding, dikembangkan sebagai <strong>Lead ML
+                Engineer</strong>. Membantu masyarakat mengenali motif batik
+                dari seluruh Indonesia beserta filosofi dan daerah asalnya —
+                dilatih dengan transfer learning lalu fine-tuning, sudah
+                dideploy di <strong>batiknow.site</strong>.
+              </p>
+              <div class="project-highlights">
+                <div><strong>Test Accuracy</strong><span>90.87% (loss 0.419)</span></div>
+                <div><strong>Validation Accuracy</strong><span>90.03% (loss 0.552)</span></div>
+                <div><strong>Model Size</strong><span>4.39M params (16.75 MB)</span></div>
+              </div>
+            </div>
           </div>
+        </div>
 
-          <div class="row">
-            <div class="col-lg-12 mb-5">
-              <div class="project-card reveal">
-                <div class="row align-items-center">
-                  <div class="col-lg-6">
-                    <div class="project-image project-image-large"><img src="images/jejak_prestasi.jpeg" alt="Jejak Prestasi System" class="img-fluid" /></div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="project-content">
-                      <div class="project-meta"><span class="project-number">04</span></div>
-                      <h3>Jejak Prestasi</h3>
-                      <div class="project-tech"><span>PHP</span><span>PostgreSQL</span><span>Bootstrap</span><span>API</span></div>
-                      <p>Sistem informasi berbasis web untuk mendokumentasikan dan mengelola data prestasi mahasiswa dan dosen secara terpusat.</p>
-                      <ul class="project-list">
-                        <li>Requirement gathering &amp; system analysis</li>
-                        <li>Database relational design</li>
-                        <li>CRUD &amp; API integration</li>
-                        <li>User Acceptance Testing (UAT)</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      
+
+        <div class="col-lg-6 mb-5">
+          <div class="project-card reveal">
+            <div class="project-image"><img src="images/cus_segmentasion.png" alt="Retail Customer Analytics & Segmentation Dashboard" class="img-fluid" /></div>
+            <div class="project-content">
+              <div class="project-meta"><span class="project-number">03</span><span class="project-date">JAN 2026</span></div>
+              <h3>Retail Customer Analytics &amp; Segmentation</h3>
+              <div class="project-tech"><span>Python</span><span>SQL</span><span>Power BI</span></div>
+              <p>Analisis data pelanggan untuk mengidentifikasi customer behavior, pelanggan bernilai tinggi, pola pembelian, dan peluang peningkatan revenue.</p>
+              <div class="project-stat"><strong>20K+</strong><span>Transaksi dianalisis</span></div>
+              <div class="project-stat"><strong>53K+</strong><span>Unit produk dianalisis</span></div>
             </div>
+          </div>
+        </div>
 
-            <div class="col-lg-12 mb-5">
-              <div class="project-card reveal">
-                <div class="row align-items-center">
-                  <div class="col-lg-5 order-lg-2">
-                    <div class="project-image project-image-large"><img src="images/zakat.png" alt="E-Zakat Management System" class="img-fluid" /></div>
-                  </div>
-                  <div class="col-lg-7 order-lg-1">
-                    <div class="project-content">
-                      <div class="project-meta"><span class="project-number">05</span></div>
-                      <h3>E-Zakat Management System</h3>
-                      <div class="project-tech"><span>PHP Laravel</span><span>MySQL</span><span>Bootstrap</span></div>
-                      <p>Sistem informasi pengelolaan zakat berbasis web untuk mengelola data muzaki, mustahik, jenis zakat, transaksi pembayaran, distribusi dana, masjid mitra, dashboard, dan pelaporan.</p>
-                      <div class="project-kpi"><span>Transaction Management</span><span>Distribution</span><span>Reporting</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row project-gallery mt-4">
-                  <div class="col-md-6">
-                    <img src="images/zakat.png" alt="E-Zakat Transaction" class="img-fluid rounded" />
-                    <p class="gallery-caption">Transaksi Zakat</p>
-                  </div>
-                  <div class="col-md-6">
-                    <img src="images/add_distribution.png" alt="E-Zakat Distribution" class="img-fluid rounded" />
-                    <p class="gallery-caption">Distribusi Dana Zakat</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-6 mb-5">
-              <div class="project-card reveal">
-                <div class="project-image"><img src="images/caffe.png" alt="Coffee Shop Website" class="img-fluid" /></div>
-                <div class="project-content">
-                  <div class="project-meta"><span class="project-number">06</span></div>
-                  <h3>Coffee Shop Website</h3>
-                  <div class="project-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>PHP</span></div>
-                  <p>Website profil coffee shop dengan desain responsif yang menampilkan informasi produk, menu, galeri, dan kontak pelanggan.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-6 mb-5">
-              <div class="project-card reveal">
-                <div class="project-image"><img src="images/undangan.png" alt="Digital Invitation Website" class="img-fluid" /></div>
-                <div class="project-content">
-                  <div class="project-meta"><span class="project-number">07</span></div>
-                  <h3>Digital Invitation Website</h3>
-                  <div class="project-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-                  <p>Website undangan digital responsif dengan countdown, galeri foto, lokasi acara, buku tamu, dan elemen interaktif untuk meningkatkan pengalaman pengguna.</p>
-                </div>
-              </div>
+        <div class="col-lg-6 mb-5">
+          <div class="project-card reveal">
+            <div class="project-image"><img src="images/retail.png" alt="Retail Sales Performance Dashboard" class="img-fluid" /></div>
+            <div class="project-content">
+              <div class="project-meta"><span class="project-number">04</span><span class="project-date">JAN 2026</span></div>
+              <h3>Retail Sales Performance Dashboard</h3>
+              <div class="project-tech"><span>Microsoft Excel</span><span>Power BI</span></div>
+              <p>Dashboard interaktif untuk memantau performa penjualan melalui KPI utama seperti Total Revenue, Total Orders, Total Units Sold, Total Discount, dan Cancellation Rate, serta analisis tren revenue, provinsi, kategori produk, metode pembayaran, dan metode pengiriman.</p>
+              <div class="project-kpi"><span>Total Revenue</span><span>Total Orders</span><span>Units Sold</span><span>Cancellation Rate</span></div>
+              <div class="project-dashboard-note"><small>Executive Overview Dashboard</small></div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+
+    <!-- SOFTWARE -->
+    <div class="project-category">
+      <div class="category-heading text-center mb-5 reveal">
+        <span class="category-label">02 — SOFTWARE</span>
+        <h2 class="mt-2 mb-3">Web Development &amp; System Analysis</h2>
+        <p class="category-description">
+          Pengembangan sistem informasi berbasis web mulai dari requirement
+          gathering, perancangan sistem, database, backend development,
+          hingga testing.
+        </p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 mb-5">
+          <div class="project-card reveal">
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <div class="project-image project-image-large"><img src="images/jejak_prestasi.jpeg" alt="Jejak Prestasi System" class="img-fluid" /></div>
+              </div>
+              <div class="col-lg-6">
+                <div class="project-content">
+                  <div class="project-meta"><span class="project-number">05</span></div>
+                  <h3>Jejak Prestasi</h3>
+                  <div class="project-tech"><span>PHP</span><span>PostgreSQL</span><span>Bootstrap</span><span>API</span></div>
+                  <p>Sistem informasi berbasis web untuk mendokumentasikan dan mengelola data prestasi mahasiswa dan dosen secara terpusat.</p>
+                  <ul class="project-list">
+                    <li>Requirement gathering &amp; system analysis</li>
+                    <li>Database relational design</li>
+                    <li>CRUD &amp; API integration</li>
+                    <li>User Acceptance Testing (UAT)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-12 mb-5">
+          <div class="project-card reveal">
+            <div class="row align-items-center">
+              <div class="col-lg-5 order-lg-2">
+                <div class="project-image project-image-large"><img src="images/zakat.png" alt="E-Zakat Management System" class="img-fluid" /></div>
+              </div>
+              <div class="col-lg-7 order-lg-1">
+                <div class="project-content">
+                  <div class="project-meta"><span class="project-number">06</span></div>
+                  <h3>E-Zakat Management System</h3>
+                  <div class="project-tech"><span>PHP Laravel</span><span>MySQL</span><span>Bootstrap</span></div>
+                  <p>Sistem informasi pengelolaan zakat berbasis web untuk mengelola data muzaki, mustahik, jenis zakat, transaksi pembayaran, distribusi dana, masjid mitra, dashboard, dan pelaporan.</p>
+                  <div class="project-kpi"><span>Transaction Management</span><span>Distribution</span><span>Reporting</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="row project-gallery mt-4">
+              <div class="col-md-6">
+                <img src="images/zakat.png" alt="E-Zakat Transaction" class="img-fluid rounded" />
+                <p class="gallery-caption">Transaksi Zakat</p>
+              </div>
+              <div class="col-md-6">
+                <img src="images/add_distribution.png" alt="E-Zakat Distribution" class="img-fluid rounded" />
+                <p class="gallery-caption">Distribusi Dana Zakat</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 mb-5">
+          <div class="project-card reveal">
+            <div class="project-image"><img src="images/caffe.png" alt="Coffee Shop Website" class="img-fluid" /></div>
+            <div class="project-content">
+              <div class="project-meta"><span class="project-number">07</span></div>
+              <h3>Coffee Shop Website</h3>
+              <div class="project-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>PHP</span></div>
+              <p>Website profil coffee shop dengan desain responsif yang menampilkan informasi produk, menu, galeri, dan kontak pelanggan.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 mb-5">
+          <div class="project-card reveal">
+            <div class="project-image"><img src="images/undangan.png" alt="Digital Invitation Website" class="img-fluid" /></div>
+            <div class="project-content">
+              <div class="project-meta"><span class="project-number">08</span></div>
+              <h3>Digital Invitation Website</h3>
+              <div class="project-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+              <p>Website undangan digital responsif dengan countdown, galeri foto, lokasi acara, buku tamu, dan elemen interaktif untuk meningkatkan pengalaman pengguna.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
     <style>
       .ftco-project { position: relative; }
@@ -801,6 +896,8 @@
       .carousel-dot.active { width: 22px; border-radius: 8px; background: var(--accent); }
       .carousel-counter { position: absolute; right: 18px; bottom: 14px; padding: 5px 9px; border-radius: 12px; background: rgba(10,14,24,.72); color: rgba(255,255,255,.82); font-size: 10px; letter-spacing: 1px; z-index: 5; }
 
+      .project-carousel--sm .carousel-slide { height: 280px; }
+
       @media (max-width: 767px) {
         .project-category { margin-bottom: 70px; }
         .project-content, .featured-project .project-content { padding: 24px; }
@@ -809,6 +906,7 @@
         .project-highlights { gap: 18px; }
         .project-gallery { padding: 0 20px 20px; }
         .carousel-slide { height: 270px; }
+        .project-carousel--sm .carousel-slide { height: 230px; }
         .carousel-control { width: 36px; height: 36px; font-size: 16px; }
         .carousel-prev { left: 10px; }
         .carousel-next { right: 10px; }
@@ -1095,48 +1193,45 @@
         }, { threshold: 0.4 });
         bars.forEach(function (bar) { barIo.observe(bar); });
 
-        // ---- AI CV Screening carousel ----
-        var aiCurrentSlide = 0;
-        var aiTotalSlides = 5;
+        // ---- Semua project carousel (generik) ----
+        document.querySelectorAll('.project-carousel').forEach(function (carousel) {
+          var track = carousel.querySelector('.carousel-track');
+          var slides = carousel.querySelectorAll('.carousel-slide');
+          var dots = carousel.querySelectorAll('.carousel-dot');
+          var counterCurrent = carousel.querySelector('.carousel-counter-current');
+          var total = slides.length;
+          var current = 0;
 
-        function renderAiCarousel() {
-          var track = document.querySelector('#aiCvCarousel .carousel-track');
-          var dots = document.querySelectorAll('#aiCvCarousel .carousel-dot');
-          var current = document.getElementById('aiSlideCurrent');
-          if (!track) return;
-          track.style.transform = 'translateX(-' + (aiCurrentSlide * 100) + '%)';
-          dots.forEach(function (dot, index) {
-            dot.classList.toggle('active', index === aiCurrentSlide);
+          function render() {
+            track.style.transform = 'translateX(-' + (current * 100) + '%)';
+            dots.forEach(function (dot, i) {
+              dot.classList.toggle('active', i === current);
+            });
+            if (counterCurrent) counterCurrent.textContent = String(current + 1).padStart(2, '0');
+          }
+
+          function goTo(index) {
+            current = (index + total) % total;
+            render();
+          }
+
+          carousel.querySelector('.carousel-prev').addEventListener('click', function () { goTo(current - 1); });
+          carousel.querySelector('.carousel-next').addEventListener('click', function () { goTo(current + 1); });
+          dots.forEach(function (dot, i) {
+            dot.addEventListener('click', function () { goTo(i); });
           });
-          if (current) current.textContent = String(aiCurrentSlide + 1).padStart(2, '0');
-        }
 
-        window.showAiSlide = function (index) {
-          aiCurrentSlide = (index + aiTotalSlides) % aiTotalSlides;
-          renderAiCarousel();
-        };
-
-        window.moveAiCarousel = function (direction) {
-          aiCurrentSlide = (aiCurrentSlide + direction + aiTotalSlides) % aiTotalSlides;
-          renderAiCarousel();
-        };
-
-        var carousel = document.getElementById('aiCvCarousel');
-        var touchStartX = 0;
-        if (carousel) {
-          carousel.addEventListener('touchstart', function (event) {
-            touchStartX = event.changedTouches[0].screenX;
+          var touchStartX = 0;
+          carousel.addEventListener('touchstart', function (e) {
+            touchStartX = e.changedTouches[0].screenX;
           }, { passive: true });
-          carousel.addEventListener('touchend', function (event) {
-            var touchEndX = event.changedTouches[0].screenX;
-            var distance = touchEndX - touchStartX;
-            if (Math.abs(distance) > 45) {
-              window.moveAiCarousel(distance < 0 ? 1 : -1);
-            }
+          carousel.addEventListener('touchend', function (e) {
+            var dx = e.changedTouches[0].screenX - touchStartX;
+            if (Math.abs(dx) > 45) goTo(current + (dx < 0 ? 1 : -1));
           }, { passive: true });
-        }
 
-        renderAiCarousel();
+          render();
+        });
       });
     </script>
   </body>
