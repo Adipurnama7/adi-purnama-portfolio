@@ -11844,9 +11844,15 @@ textarea.form-control {
   }
 }
 
+/* ================= HEADINGS ================= */
+
 .heading-section {
   position: relative;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
 }
+
 .heading-section .subheading {
   font-size: 13px;
   font-weight: 500;
@@ -11856,36 +11862,86 @@ textarea.form-control {
   color: black;
   letter-spacing: 3px;
 }
-.heading-section h1.big {
-  position: absolute;
-  top: 0px;
-  left: 0;
-  font-size: 7vw;
-  color: rgba(255, 255, 255, 0.1);
-  z-index: -1;
-  font-weight: 900;
-}
+
+/* Background heading: Proyek, Pendidikan, Pelatihan, dll */
+.heading-section h1.big,
 .heading-section h1.big.big-2 {
-  right: 0;
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  margin: 0;
+  padding: 0;
+
+  transform: translate(-50%, -50%);
+
+  width: max-content;
+  max-width: none;
+
+  text-align: center;
+  white-space: nowrap;
+
+  font-size: 7vw;
+  line-height: 1;
+
+  color: rgba(255, 255, 255, 0.06);
+
+  font-weight: 900;
+
+  z-index: 0;
+  pointer-events: none;
 }
+
+/* Judul utama */
 .heading-section h2 {
+  position: relative;
+  z-index: 2;
+
   font-size: 50px;
   font-weight: 700;
+
+  text-align: center;
 }
+
 .heading-section h2 span {
   font-weight: 400;
 }
+
+/* Paragraf */
+.heading-section > p {
+  position: relative;
+  z-index: 2;
+
+  max-width: 680px;
+
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  text-align: center;
+}
+
 @media (max-width: 767.98px) {
+
   .heading-section h2 {
     font-size: 38px;
   }
+
+  .heading-section h1.big,
+  .heading-section h1.big.big-2 {
+    font-size: 12vw;
+  }
+
 }
+
 .heading-section.heading-section-white .subheading {
   color: rgba(255, 255, 255, 0.9) !important;
 }
+
 .heading-section.heading-section-white h2 {
   color: #fff;
 }
+
 .heading-section.heading-section-white p {
   color: rgba(255, 255, 255, 0.9);
 }
